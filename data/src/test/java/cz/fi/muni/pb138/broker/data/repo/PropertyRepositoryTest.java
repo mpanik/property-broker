@@ -41,7 +41,7 @@ public class PropertyRepositoryTest {
         assertEquals(null, repository.findOne(1l));
 
         Property property = new Property();
-        property.setName("test property");
+        property.setType("test property");
 
         repository.save(property);
 
@@ -51,7 +51,7 @@ public class PropertyRepositoryTest {
     @Test
     public void testFindByNameContaining_OneProperty() throws Exception {
         Property property = new Property();
-        property.setName("test property");
+        property.setType("test property");
         repository.save(property);
 
         assertEquals(Collections.singletonList(property), repository.findByNameContaining("test"));
@@ -60,16 +60,16 @@ public class PropertyRepositoryTest {
     @Test
     public void testFindByNameContaining_MultipleProperties() throws Exception {
         Property property1Test = new Property();
-        property1Test.setName("test property");
+        property1Test.setType("test property");
         repository.save(property1Test);
         Property property2Test = new Property();
-        property2Test.setName("testing like hell");
+        property2Test.setType("testing like hell");
         repository.save(property2Test);
         Property property3Test = new Property();
-        property3Test.setName("this test property should be there");
+        property3Test.setType("this test property should be there");
         repository.save(property3Test);
         Property property4WithoutKeyword = new Property();
-        property4WithoutKeyword.setName("this really shouldn't appear in result");
+        property4WithoutKeyword.setType("this really shouldn't appear in result");
         repository.save(property4WithoutKeyword);
 
         List<Property> expected = asList(property1Test, property2Test, property3Test);
