@@ -1,21 +1,68 @@
+package cz.fi.muni.pb138.broker.business.parser;
+
+import cz.fi.muni.pb138.broker.data.model.Address;
+import cz.fi.muni.pb138.broker.data.model.Property;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cz.fi.muni.pb138.broker.data.model.Property;
-import org.json.*;
-
 /**
- * Created by viki on 26.4.15.
+ * @author Viki
  */
-public class DataExtractionTool {
+@Named
+public class SRealityParser implements PropertyParser {
 
+    @Override
+    public List<Property> parse() throws Exception {
+        return extractFromSReality();
+    }
 
-    public static List<Property> extractFromSReality() throws Exception {
+    private String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
+
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
+    }
+
+    private Property buildProperty(String type, Integer area, BigDecimal price, Address address) {
+        Property property = new Property();
+        property.setType(type);
+        property.setArea(area);
+        property.setPrice(price);
+        property.setAddress(address);
+        return property;
+    }
+
+    private Address buildAddress(String location) {
+        Address address = new Address();
+        address.setCity(location);
+        address.setDistrict(location);
+        address.setStreet(location);
+        return address;
+    }
+
+    //TODO: refactor
+    private List<Property> extractFromSReality() throws Exception {
 
         List<Property> properties = new ArrayList<>();
 
@@ -24,15 +71,15 @@ public class DataExtractionTool {
         int estateCount = countDataJsonObject.getInt("result_size");
 
         int estateCounter = 0;
-        int pageNumber  = 1;
+        int pageNumber = 1;
 
-        while(estateCounter < estateCount) {
+        while (estateCounter < estateCount) {
             String estateData = readUrl("http://www.sreality.cz/api/cs/v1/estates?category_main_cb=1&category_type_cb=1&page=" + pageNumber + "&per_page=100&region=okres+Brno-m%C4%9Bsto&region_entity_id=72&region_entity_type=district&tms=1430150466326");
             pageNumber++;
             JSONObject estateDataJsonObject = new JSONObject(estateData);
             JSONArray estates = estateDataJsonObject.getJSONObject("_embedded").getJSONArray("estates");
             estateCounter += estates.length();
-            for(int i = 0; i < estates.length(); i++) {
+            for (int i = 0; i < estates.length(); i++) {
 
                 JSONObject apartment = estates.getJSONObject(i);
                 String typeAndArea = apartment.getString("name");
@@ -67,34 +114,13 @@ public class DataExtractionTool {
                 int intPrice = Integer.parseInt(price);
                 //Whenever price is not present in the advertisement, the data file contains 1 for price.
                 // Changing it to -1 to make it clear price value is not valid
-                if(intPrice == 1) {
+                if (intPrice == 1) {
                     intPrice = -1;
                 }
 
-                Property property = new Property(type, intArea, locality, intPrice);
-                properties.add(property);
+                properties.add(buildProperty(type, intArea, BigDecimal.valueOf(intPrice), buildAddress(locality)));
             }
         }
         return properties;
     }
-
-
-    private static String readUrl(String urlString) throws Exception {
-        BufferedReader reader = null;
-        try {
-            URL url = new URL(urlString);
-            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
-            int read;
-            char[] chars = new char[1024];
-            while ((read = reader.read(chars)) != -1)
-                buffer.append(chars, 0, read);
-
-            return buffer.toString();
-        } finally {
-            if (reader != null)
-                reader.close();
-        }
-    }
-
 }
