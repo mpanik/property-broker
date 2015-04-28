@@ -9,5 +9,5 @@ import java.util.List;
  * @author Milan
  */
 public interface PropertyRepository extends JpaRepository<Property, Long> {
-    List<Property> findByNameContaining(String text);
+    List<Property> findByAddressDistrictContainingIgnoreCase(String text);
 }

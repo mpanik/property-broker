@@ -1,26 +1,52 @@
 package cz.fi.muni.pb138.broker.data.model;
 
-import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 /**
  * @author Milan
+ * @author Viki
  */
 @Entity
 public class Property extends BaseModel {
-    @Basic
+    @Column(nullable = false)
+    private Integer area;
+
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @Embedded
+    @Column(nullable = false)
+    private Address address;
+
+    //TODO: enum for type
+    @Column
     private String type;
-    private int area;
-    private String location;
-    private int price;
 
-    public Property() {}
+    public Integer getArea() {
+        return area;
+    }
 
-    public Property(String type, int area, String location, int price) {
-        this.type = type;
+    public void setArea(Integer area) {
         this.area = area;
-        this.location = location;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getType() {
@@ -31,28 +57,27 @@ public class Property extends BaseModel {
         this.type = type;
     }
 
-    public int getArea() {
-        return area;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Property)) return false;
+
+        Property property = (Property) o;
+
+        if (!area.equals(property.area)) return false;
+        if (!price.equals(property.price)) return false;
+        if (!address.equals(property.address)) return false;
+        return !(type != null ? !type.equals(property.type) : property.type != null);
+
     }
 
-    public void setArea(int area) {
-        this.area = area;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    @Override
+    public int hashCode() {
+        int result = area.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -60,32 +85,7 @@ public class Property extends BaseModel {
         return "Property{" +
                 "type='" + type + '\'' +
                 ", area=" + area +
-                ", location='" + location + '\'' +
                 ", price=" + price +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Property property = (Property) o;
-
-        if (area != property.area) return false;
-        if (price != property.price) return false;
-        if (type != null ? !type.equals(property.type) : property.type != null) return false;
-        return !(location != null ? !location.equals(property.location) : property.location != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = type != null ? type.hashCode() : 0;
-        result = 31 * result + area;
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + price;
-        return result;
-    }
-
 }
