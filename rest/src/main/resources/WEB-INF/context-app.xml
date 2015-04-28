@@ -5,6 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:context-persistence.xml"/>
+    <import resource="classpath:context-business.xml"/>
     <import resource="classpath:/WEB-INF/context-web.xml"/>
 
     <context:annotation-config/>
