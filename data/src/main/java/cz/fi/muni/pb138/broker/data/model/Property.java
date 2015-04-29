@@ -83,9 +83,10 @@ public class Property extends BaseModel {
     @Override
     public String toString() {
         return "Property{" +
-                "type='" + type + '\'' +
-                ", area=" + area +
+                "area=" + area +
                 ", price=" + price +
+                ", address=" + address +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
