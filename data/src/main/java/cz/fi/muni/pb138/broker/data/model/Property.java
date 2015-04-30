@@ -1,5 +1,7 @@
 package cz.fi.muni.pb138.broker.data.model;
 
+import cz.fi.muni.pb138.broker.data.enums.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -21,9 +23,8 @@ public class Property extends BaseModel {
     @Column(nullable = false)
     private Address address;
 
-    //TODO: enum for type
     @Column
-    private String type;
+    private Type type;
 
     public Integer getArea() {
         return area;
@@ -49,11 +50,11 @@ public class Property extends BaseModel {
         this.address = address;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

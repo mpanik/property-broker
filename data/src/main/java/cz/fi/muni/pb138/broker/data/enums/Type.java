@@ -1,6 +1,8 @@
 package cz.fi.muni.pb138.broker.data.enums;
 
-
+/**
+ * @author Martin
+ */
 public enum Type {
 
     ONE_ZERO("1+0"),
@@ -14,27 +16,37 @@ public enum Type {
     FOUR_ONE("4+1"),
     FIVE_KK("5+kk"),
     FIVE_ONE("5+1"),
-    FIVE_PLUS("5+1 a více"); //pre sreality = 5+kk, 5+1 , 6 a více , Atypický
+    FIVE_PLUS("5+kk"),
+    UNKNOWN_TYPE("unknown type");
 
     private String text;
 
-     Type(String text) {
-         this.text=text;
+    Type(String text) {
+        this.text = text;
     }
 
     public String getText() {
-        return this.text;
+        return text;
     }
 
     public static Type fromString(String text) {
-        if (text != null) {
-            for (Type t : Type.values()) {
-                if (text.equalsIgnoreCase(t.text)) {
-                    return t;
-                }
+        if (text.isEmpty()) {
+            throw new IllegalArgumentException("empty type");
+        }
+
+        for (Type type : Type.values()) {
+            if (text.equalsIgnoreCase(type.text)) {
+                return type;
             }
         }
-        return null;
+
+        return UNKNOWN_TYPE;
     }
 
+    @Override
+    public String toString() {
+        return "Type{" +
+                "text='" + text + '\'' +
+                '}';
+    }
 }

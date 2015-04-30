@@ -1,5 +1,6 @@
 package cz.fi.muni.pb138.broker.data.repo;
 
+import cz.fi.muni.pb138.broker.data.enums.Type;
 import cz.fi.muni.pb138.broker.data.model.Address;
 import cz.fi.muni.pb138.broker.data.model.Property;
 import org.junit.Before;
@@ -42,7 +43,7 @@ public class PropertyRepositoryIT {
         address.setStreet("Orli");
 
         propertyInDistrictBrnoStred = new Property();
-        propertyInDistrictBrnoStred.setType("2+1");
+        propertyInDistrictBrnoStred.setType(Type.fromString("2+1"));
         propertyInDistrictBrnoStred.setArea(50);
         propertyInDistrictBrnoStred.setPrice(BigDecimal.valueOf(10_000_000));
         propertyInDistrictBrnoStred.setAddress(address);
@@ -53,6 +54,7 @@ public class PropertyRepositoryIT {
         assertEquals(null, repository.findOne(1l));
 
         repository.save(propertyInDistrictBrnoStred);
+        System.out.println(propertyInDistrictBrnoStred);
 
         assertThat(repository.findOne(1l), is(equalTo(propertyInDistrictBrnoStred)));
     }
