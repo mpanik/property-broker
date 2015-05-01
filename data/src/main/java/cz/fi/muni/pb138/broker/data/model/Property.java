@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Entity
 public class Property extends BaseModel {
     @Column(nullable = false)
-    private Integer area;
+    private Double area;
 
     @Column(nullable = false)
     private BigDecimal price;
@@ -26,11 +26,9 @@ public class Property extends BaseModel {
     @Column
     private Type type;
 
-    public Integer getArea() {
-        return area;
-    }
+    public Double getArea() { return area; }
 
-    public void setArea(Integer area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 

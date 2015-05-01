@@ -43,8 +43,10 @@ public class PropertyRepositoryIT {
         address.setStreet("Orli");
 
         propertyInDistrictBrnoStred = new Property();
-        propertyInDistrictBrnoStred.setType(Type.fromString("2+1"));
-        propertyInDistrictBrnoStred.setArea(50);
+
+        propertyInDistrictBrnoStred.setType(Type.TWO_ONE);
+        propertyInDistrictBrnoStred.setArea(50.0);
+
         propertyInDistrictBrnoStred.setPrice(BigDecimal.valueOf(10_000_000));
         propertyInDistrictBrnoStred.setAddress(address);
     }
