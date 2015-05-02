@@ -22,6 +22,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.2</maven.compiler.version>
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
+        <maven-war-plugin>2.6</maven-war-plugin>
+        <maven-clean-plugin>2.6.1</maven-clean-plugin>
         <!--Core-->
         <spring.version>4.1.6.RELEASE</spring.version>
         <spring-data.version>1.8.0.RELEASE</spring-data.version>
@@ -65,6 +67,33 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin}</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>frontend/dist</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>frontend/dist</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>frontend/.tmp</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>

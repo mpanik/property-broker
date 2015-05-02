@@ -5,16 +5,17 @@ version 0.11.1.
 
 ## Requirements
 
- * maven 2.1+
+ * maven 3.1+
  * nodejs with npm
- * globally installed grunt-cli
+ * (optional) globally installed grunt-cli
 
 ## Build & development
 
-Run `mvn clean install` for building and installing all dependencies.
-Then navigate to `./target-grunt` and run `grunt serve` for preview.
+Run `mvn clean install` for building and installing all dependencies and `grunt serve` for preview.
 
-(optimization) exclude target-grunt in your IDE
+### Optimization
+
+exclude node, node_modules and bower_components in your IDE
 
 ## Testing
 
