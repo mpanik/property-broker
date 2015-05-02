@@ -1,0 +1,16 @@
+{
+  "name": "property-broker",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "bootstrap": "latest",
+    "angular-animate": "latest",
+    "angular-resource": "latest",
+    "angular-route": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
+  },
+  "appPath": "app",
+  "moduleName": "propertyBrokerApp"
+}

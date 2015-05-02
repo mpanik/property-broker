@@ -12,6 +12,7 @@
         <module>data</module>
         <module>business</module>
         <module>rest</module>
+        <module>frontend</module>
     </modules>
 
     <properties>
