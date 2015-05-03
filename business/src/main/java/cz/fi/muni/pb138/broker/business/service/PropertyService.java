@@ -4,7 +4,7 @@ import cz.fi.muni.pb138.broker.data.model.Property;
 import java.util.List;
 
 /**
- * @Author by Martin
+ * @author by Martin
  */
 
 public interface PropertyService {
@@ -24,7 +24,7 @@ public interface PropertyService {
     void delete(Long id);
 
     /**
-     * Update given song.
+     * Update given property.
      *
      * @param property property to be updated
      */
@@ -36,7 +36,7 @@ public interface PropertyService {
      * @param id identification of property to be found
      * @return found property
      */
-    Property getOne(Long id);
+    Property findOne(Long id);
 
     /**
      * Get all properties.
@@ -46,9 +46,9 @@ public interface PropertyService {
     List<Property> findAll();
 
     /**
-     * Get all properties on district/address as given parameter.
+     * Get all properties on address.district as given parameter.
      *
-     * @param text name of district/address
+     * @param text name of district
      * @return return list of properties in given district/address
      */
     List<Property> findByAddressDistrictContainingIgnoreCase(String text);

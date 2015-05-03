@@ -2,17 +2,24 @@ package cz.fi.muni.pb138.broker.data.model;
 
 import cz.fi.muni.pb138.broker.data.enums.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author Milan
  * @author Viki
+ * @author Martin
  */
 @Entity
-public class Property extends BaseModel {
+public class Property extends BaseModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @Column(nullable = false)
     private Double area;
 
@@ -25,6 +32,8 @@ public class Property extends BaseModel {
 
     @Column
     private Type type;
+
+    public Long getId(){return  id;}
 
     public Double getArea() { return area; }
 
