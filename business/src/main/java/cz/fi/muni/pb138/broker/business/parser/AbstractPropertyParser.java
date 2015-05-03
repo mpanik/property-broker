@@ -123,7 +123,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
             type = parseRegex(typeData, pattern);
         }
         catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException("No estate type in typeData");
+            throw new IllegalArgumentException("No estate type in data");
         }
 
         return type;
