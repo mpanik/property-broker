@@ -1,9 +1,6 @@
 package cz.fi.muni.pb138.broker.business.service;
 
 import cz.fi.muni.pb138.broker.data.model.Property;
-
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import java.util.List;
 
 /**
@@ -17,24 +14,21 @@ public interface PropertyService {
      *
      * @param property property to be inserted
      */
-    @PreAuthorize("hasAuthority('CREATE')")
-    void createProperty(Property property);
+    void save(Property property);
 
     /**
      * Delete property by given id.
      *
      * @param id identification of property to be deleted
      */
-    @PreAuthorize("hasAuthority('DELETE')")
-    void deleteProperty(Long id);
+    void delete(Long id);
 
     /**
      * Update given song.
      *
      * @param property property to be updated
      */
-    @PreAuthorize("hasAuthority('EDIT')")
-    void updateProperty(Property property);
+    void update(Property property);
 
     /**
      * Get property by given id.
@@ -42,14 +36,14 @@ public interface PropertyService {
      * @param id identification of property to be found
      * @return found property
      */
-    Property findProperty(Long id);
+    Property getOne(Long id);
 
     /**
      * Get all properties.
      *
      * @return list of all properties
      */
-    List<Property> getAllProperties();
+    List<Property> findAll();
 
     /**
      * Get all properties on district/address as given parameter.
