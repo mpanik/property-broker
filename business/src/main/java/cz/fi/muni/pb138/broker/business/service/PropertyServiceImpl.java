@@ -17,53 +17,36 @@ import java.util.List;
 @Transactional
 public class PropertyServiceImpl implements PropertyService {
 
-
+    @Inject
     private PropertyRepository propertyRepo;
 
     public PropertyRepository getPropertyRepo() {
         return propertyRepo;
     }
 
-    @Inject
     public void setProperty(PropertyRepository propertyRepo) {
         this.propertyRepo = propertyRepo;
     }
 
     @Override
     public void save(Property property) {
-        if(property==null) {
-            throw new NullPointerException("property is null");
-        }
         getPropertyRepo().save(property);
     }
 
     @Override
     public void delete(Long id) {
-        if(id==null) {
-            throw new NullPointerException("id is null");
-        }
-        if(id<0){
-            throw  new IllegalArgumentException("id is < 0");
-        }
         getPropertyRepo().delete(id);
     }
 
     @Override
     public void update(Property property) {
-        if(property==null) {
-            throw new NullPointerException("property is null");
-        }
-     //   getPropertyRepo().update(property);                       //neviem co pouzit na update
+        Property updtProperty= getPropertyRepo().findOne(property.getId());
+        updtProperty=property;
+        getPropertyRepo().flush();
     }
 
     @Override
     public Property findOne(Long id) {
-        if(id==null) {
-            throw new NullPointerException("id is null");
-        }
-        if(id<0){
-            throw  new IllegalArgumentException("id is < 0");
-        }
         return getPropertyRepo().findOne(id);
     }
 
@@ -74,13 +57,6 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public List<Property> findByAddressDistrictContainingIgnoreCase(String text) {
-        String textLower=text.toLowerCase();
-        List<Property> properties = new ArrayList<>();
-        for(Property p : getPropertyRepo().findAll()) {
-            if (p.getAddress().getDistrict().toLowerCase().contains(textLower)) {
-                properties.add(p);
-            }
-        }
-        return properties;
+        return findByAddressDistrictContainingIgnoreCase(text);
     }
 }
