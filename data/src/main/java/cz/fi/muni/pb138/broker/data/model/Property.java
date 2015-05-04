@@ -14,14 +14,10 @@ import java.math.BigDecimal;
 @Entity
 public class Property extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private static final long serialVersionUID = 56481614648421145L;
 
     @Column(nullable = false)
-    private Double area;
+    private Integer area;
 
     @Column(nullable = false)
     private BigDecimal price;
@@ -33,11 +29,13 @@ public class Property extends BaseModel implements Serializable {
     @Column
     private Type type;
 
-    public Long getId(){return  id;}
+    public Long getId() {
+        return  id;
+    }
 
-    public Double getArea() { return area; }
+    public Integer getArea() { return area; }
 
-    public void setArea(Double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
