@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * @author by Martin
  */
-
 public interface PropertyService {
 
     /**
