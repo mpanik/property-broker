@@ -95,13 +95,13 @@ public class PropertyServiceImplIT {
         propertyService.save(propertyInDistrictBrnoStred);
 
         int areaOfPropertyNotUpdated=propertyService.findOne(propertyInDistrictBrnoStred.getId()).getArea();
-        propertyService.findOne(propertyInDistrictBrnoStred.getId()).setArea(48);
+        propertyService.findOne(propertyInDistrictBrnoStred.getId()).setArea(47);
         assertEquals(50, areaOfPropertyNotUpdated);
 
         propertyService.update(propertyInDistrictBrnoStred);
 
         int areaOfPropertyUpdated=propertyService.findOne(propertyInDistrictBrnoStred.getId()).getArea();
-        assertEquals(48, areaOfPropertyUpdated);
+        assertEquals(47, areaOfPropertyUpdated);
 
     }
 
