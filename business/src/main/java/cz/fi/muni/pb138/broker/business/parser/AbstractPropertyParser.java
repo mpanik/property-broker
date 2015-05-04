@@ -28,7 +28,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
             numPrice = parsePrice(price);
         }
         catch(IllegalArgumentException ex) {
-            numPrice = new BigDecimal(1);
+            throw new IllegalArgumentException("Unable to build a property object, not enough data");
         }
 
         try {
@@ -38,20 +38,14 @@ public abstract class AbstractPropertyParser implements PropertyParser {
             type = null;
         }
 
-        Address address;
-        try {
-            address = parseAddress(street, district, realityServer);
-        }
-        catch(IllegalArgumentException ex) {
-            address = null;
-        }
+        Address address = parseAddress(street, district, realityServer);
 
         Integer numArea;
         try {
             numArea = parseArea(area);
         }
         catch(IllegalArgumentException ex) {
-            numArea = 1;
+            throw new IllegalArgumentException("Unable to build a property object, not enough data");
         }
 
         Property property = buildProperty(type, numArea, numPrice, address);
@@ -145,6 +139,9 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         catch(IllegalArgumentException ex) {
             throw new IllegalArgumentException("Argument not a number");
         }
+        if(Integer.parseInt(price) == 1) {
+            throw new IllegalArgumentException("Argument not a number");
+        }
         BigDecimal numPrice = new BigDecimal(price);
 
         return numPrice;
@@ -192,7 +189,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
             district = district.substring(0, 1).toUpperCase() + district.substring(1, district.length()).toLowerCase();
         }
         catch (IllegalArgumentException ex) {
-            district = null;
+            district = "Brno-město";
         }
 
         Address address = buildAddress(street, district, city);

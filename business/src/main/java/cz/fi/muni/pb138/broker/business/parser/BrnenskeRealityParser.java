@@ -45,9 +45,13 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
                 String description = ad.select("a[title]").first().attr("title");
                 //paragraph tag with "cena" attribute contains price info
                 String price = ad.select("p.cena").first().select("strong").first().text();
-
-                Property property = parseAndBuild(type, area, district, description, price, BRNENSKE_REALITY);
-                properties.add(property);
+                try {
+                    Property property = parseAndBuild(type, area, district, description, price, BRNENSKE_REALITY);
+                    properties.add(property);
+                }
+                catch(IllegalArgumentException ex) {
+                    continue;
+                }
             }
             //extract data from the next page
             onePageAds = extractDataFromPage(url + "/" + pageCounter);

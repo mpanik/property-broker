@@ -23,23 +23,11 @@ public class PreparsedDataImporter {
             throw new IOException("Unable to write to file" + ex);
         }
     }
+
     private String prepareInsert(Property property) {
 
-        String area;
-        if(property.getArea() == 1) {
-            area = "null";
-        }
-        else {
-            area = property.getArea().toString();
-        }
-
-        String price;
-        if(property.getPrice().intValue() == 1) {
-            price = "null";
-        }
-        else {
-            price = property.getPrice().toString();
-        }
+        String area = property.getArea().toString();
+        String price = property.getPrice().toString();
 
         String street = property.getAddress().getStreet();
         if(street == null) {
@@ -49,21 +37,8 @@ public class PreparsedDataImporter {
             street = "'" + street + "'";
         }
 
-        String district = property.getAddress().getDistrict();
-        if(district == null) {
-            district = "null";
-        }
-        else {
-            district = "'" + district + "'";
-        }
-
-        String city = property.getAddress().getCity();
-        if(city == null) {
-            city = "null";
-        }
-        else {
-            city = "'" + city + "'";
-        }
+        String district = "'" + property.getAddress().getDistrict() + "'";
+        String city = "'" + property.getAddress().getCity() + "'";
 
         String type;
         if(property.getType() == null) {

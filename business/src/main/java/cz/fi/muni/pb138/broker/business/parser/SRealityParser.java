@@ -41,8 +41,13 @@ public class SRealityParser extends AbstractPropertyParser {
                 String typeAndArea = apartment.getString("name");
                 String locality = apartment.getString("locality");
                 String price = apartment.getString("price");
-                Property property = parseAndBuild(typeAndArea, typeAndArea, locality, locality, price, SREALITY);
-                properties.add(property);
+                try {
+                    Property property = parseAndBuild(typeAndArea, typeAndArea, locality, locality, price, SREALITY);
+                    properties.add(property);
+                }
+                catch(IllegalArgumentException ex) {
+                    continue;
+                }
             }
         }
         return properties;
