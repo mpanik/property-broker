@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by viki on 30.4.15.
+ * @author Viki
  */
 public abstract class AbstractPropertyParser implements PropertyParser {
 
@@ -46,12 +46,12 @@ public abstract class AbstractPropertyParser implements PropertyParser {
             address = null;
         }
 
-        Double numArea;
+        Integer numArea;
         try {
             numArea = parseArea(area);
         }
         catch(IllegalArgumentException ex) {
-            numArea = 1.0;
+            numArea = 1;
         }
 
         Property property = buildProperty(type, numArea, numPrice, address);
@@ -77,7 +77,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         }
     }
 
-    protected Property buildProperty(String type, Double area, BigDecimal price, Address address) {
+    protected Property buildProperty(String type, Integer area, BigDecimal price, Address address) {
         Property property = new Property();
         property.setType(Type.valueOf(type));
         property.setArea(area);
@@ -94,7 +94,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return address;
     }
 
-    protected double parseArea(String areaData) {
+    protected Integer parseArea(String areaData) {
 
         String area;
         //finding numeric values followed by a blank and m (for square meters)
@@ -109,9 +109,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         int index = area.indexOf('m');
         area = area.substring(0, index - 1);
 
-        double numArea = Double.parseDouble(area);
-
-        return numArea;
+        return Integer.parseInt(area);
     }
 
     protected String parseType(String typeData) {
