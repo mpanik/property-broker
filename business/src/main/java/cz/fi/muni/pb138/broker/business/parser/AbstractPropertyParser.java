@@ -79,7 +79,12 @@ public abstract class AbstractPropertyParser implements PropertyParser {
 
     protected Property buildProperty(String type, Integer area, BigDecimal price, Address address) {
         Property property = new Property();
-        property.setType(Type.valueOf(type));
+        if(type != null) {
+            property.setType(Type.fromString(type));
+        }
+        else {
+            property.setType(null);
+        }
         property.setArea(area);
         property.setPrice(price);
         property.setAddress(address);

@@ -30,9 +30,6 @@ public enum Type {
     }
 
     public static Type fromString(String text) {
-        if (text.isEmpty()) {
-            throw new IllegalArgumentException("empty type");
-        }
 
         for (Type type : Type.values()) {
             if (text.equalsIgnoreCase(type.text)) {
