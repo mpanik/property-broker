@@ -1,0 +1,2 @@
+INSERT INTO property (area,price,type,street,district,city) VALUES (52,5000000,5,'Orli','Brno-Stred','Brno');
+INSERT INTO property (area,price,type,street,district,city) VALUES (30,3000000,2,'Prizrenice','Brno-Juh','Brno');

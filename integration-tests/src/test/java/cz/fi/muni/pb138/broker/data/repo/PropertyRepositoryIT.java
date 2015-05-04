@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
  * @author Milan
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:test-context.xml"})
+@ContextConfiguration({"classpath:test-context-persistence.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
