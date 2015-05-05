@@ -12,19 +12,21 @@ angular
   .module('propertyBrokerApp', [
     'ngAnimate',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, uiGmapGoogleMapApiProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
+
+    uiGmapGoogleMapApiProvider.configure({
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
   });
