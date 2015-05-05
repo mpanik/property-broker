@@ -30,7 +30,7 @@ import static org.junit.Assert.assertThat;
  * @author Martin
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:test-context-persistence.xml"})
+@ContextConfiguration({"classpath:test-context-business.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Transactional
 @TransactionConfiguration(defaultRollback = true)

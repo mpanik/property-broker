@@ -1,4 +1,4 @@
-package cz.fi.muni.pb138.broker.business.parser;
+package cz.fi.muni.pb138.broker.business.util;
 
 import cz.fi.muni.pb138.broker.data.model.Property;
 import java.io.*;
@@ -12,7 +12,7 @@ public class PreparsedDataImporter {
     public void importData(List<Property> propertyList) throws Exception {
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("data/sql-insert.sql"), "utf-8"))) {
+                new FileOutputStream("business/src/main/resources/META-INF/SQL/sql-insert.sql"), "utf-8"))) {
             for(Property property : propertyList) {
                 String insertStatement = prepareInsert(property);
                 writer.write(insertStatement);
