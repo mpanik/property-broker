@@ -30,7 +30,7 @@ import static org.junit.Assert.assertThat;
  * @author Martin
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:test-context-persistence.xml"})
+@ContextConfiguration({"classpath:test-context-business.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
@@ -124,8 +124,7 @@ public class PropertyServiceImplIT {
 
     @Test
     public void testFindByAddressDistrictContainingIgnoreCase_MatchOneProperty() throws Exception {
-
-        assertEquals(Arrays.asList(propertyService.findOne(1l)), propertyService.findByAddressDistrictContainingIgnoreCase("Stred"));
+        assertEquals(Collections.singletonList(propertyService.findOne(1l)), propertyService.findByAddressDistrictContainingIgnoreCase("Stred"));
         assertEquals(Arrays.asList(propertyService.findOne(1l),propertyService.findOne(2l)), propertyService.findByAddressDistrictContainingIgnoreCase("Brno"));
     }
 
