@@ -1,5 +1,6 @@
 package cz.fi.muni.pb138.broker.data.model;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import cz.fi.muni.pb138.broker.data.enums.Type;
 import cz.fi.muni.pb138.broker.data.enums.TypeConverter;
 
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
  * @author Martin
  */
 @Entity
+@JsonRootName(value = "property")
 public class Property extends BaseModel implements Serializable {
 
     private static final long serialVersionUID = 56481614648421145L;

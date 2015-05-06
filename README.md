@@ -6,5 +6,6 @@
 
 ## Prerequisites
  * Maven
+ * [H2](http://www.h2database.com/html/main.html)
 
 ## Installation
