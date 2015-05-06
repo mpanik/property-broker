@@ -1,6 +1,7 @@
 package cz.fi.muni.pb138.broker.data.model;
 
 import cz.fi.muni.pb138.broker.data.enums.Type;
+import cz.fi.muni.pb138.broker.data.enums.TypeConverter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +28,7 @@ public class Property extends BaseModel implements Serializable {
     private Address address;
 
     @Column
+    @Convert(converter = TypeConverter.class)
     private Type type;
 
     public Long getId() {

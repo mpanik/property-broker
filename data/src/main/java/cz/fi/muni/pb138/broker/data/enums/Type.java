@@ -16,7 +16,6 @@ public enum Type {
     FOUR_ONE("4+1"),
     FIVE_KK("5+kk"),
     FIVE_ONE("5+1"),
-    FIVE_PLUS("5+kk"),
     UNKNOWN_TYPE("unknown type");
 
     private String text;
