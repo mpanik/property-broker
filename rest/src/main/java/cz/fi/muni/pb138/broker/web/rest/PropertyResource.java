@@ -23,8 +23,4 @@ public class PropertyResource {
     public Resources<Property> findAll() {
         return new Resources<>(propertyService.findAll());
     }
-    @RequestMapping(value = "/oneprop/@id",method = RequestMethod.GET)
-    public Property findOne(Long id) {
-        return propertyService.findOne(id);
-    }
 }
