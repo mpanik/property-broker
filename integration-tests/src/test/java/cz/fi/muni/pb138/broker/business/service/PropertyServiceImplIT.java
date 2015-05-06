@@ -69,83 +69,68 @@ public class PropertyServiceImplIT {
         propertyInDistrictBrnoJih.setPrice(BigDecimal.valueOf(5_600_000));
         propertyInDistrictBrnoJih.setAddress(addressBrnoJih);
 
-
     }
 
     @Test
     public void testSave() throws Exception {
-        assertEquals(null, propertyService.findOne(2l));
+
+        int sizeOfAllProperties=propertyService.findAll().size();
+
         propertyService.save(propertyInDistrictBrnoStred);
+        propertyService.save(propertyInDistrictBrnoJih);
+
         assertThat(propertyService.findOne(propertyInDistrictBrnoStred.getId()), is(equalTo(propertyInDistrictBrnoStred)));
+        assertThat(propertyService.findOne(propertyInDistrictBrnoJih.getId()), is(equalTo(propertyInDistrictBrnoJih)));
+        assertEquals(sizeOfAllProperties + 2, (propertyService.findAll()).size());
     }
 
     @Test
     public void testDelete() throws Exception {
-        propertyService.save(propertyInDistrictBrnoStred);
-        propertyService.save(propertyInDistrictBrnoJih);
-        propertyService.delete(propertyInDistrictBrnoStred.getId());
 
-        assertEquals(null, propertyService.findOne(propertyInDistrictBrnoStred.getId()));
-        assertEquals(propertyInDistrictBrnoJih, propertyService.findOne(propertyInDistrictBrnoJih.getId()));
+        int sizeOfListAllProperties=propertyService.findAll().size();
+
+        propertyService.delete(1l);
+
+        assertEquals(null, propertyService.findOne(1l));
+        assertEquals(sizeOfListAllProperties-1,propertyService.findAll().size());
     }
 
     @Test
     public void testUpdate() throws Exception {
 
-        propertyService.save(propertyInDistrictBrnoStred);
+        int areaOfPropertyNotUpdated=propertyService.findOne(1l).getArea();
+        propertyService.findOne(1l).setArea(47);
+        assertEquals(52, areaOfPropertyNotUpdated);
 
-        int areaOfPropertyNotUpdated=propertyService.findOne(propertyInDistrictBrnoStred.getId()).getArea();
-        propertyService.findOne(propertyInDistrictBrnoStred.getId()).setArea(47);
-        assertEquals(50, areaOfPropertyNotUpdated);
+        propertyService.update(propertyService.findOne(1l));
 
-        propertyService.update(propertyInDistrictBrnoStred);
-
-        int areaOfPropertyUpdated=propertyService.findOne(propertyInDistrictBrnoStred.getId()).getArea();
+        int areaOfPropertyUpdated=propertyService.findOne(1l).getArea();
         assertEquals(47, areaOfPropertyUpdated);
-
     }
 
     @Test
     public void testFindOne() throws Exception {
+
         propertyService.save(propertyInDistrictBrnoStred);
-
-        assertEquals(null, propertyService.findOne(2l));
-        assertEquals(propertyInDistrictBrnoStred, propertyService.findOne(propertyInDistrictBrnoStred.getId()));
-
-        propertyService.save(propertyInDistrictBrnoJih);
-
-        assertEquals(propertyInDistrictBrnoJih, propertyService.findOne(propertyInDistrictBrnoJih.getId()));
         assertEquals(propertyInDistrictBrnoStred, propertyService.findOne(propertyInDistrictBrnoStred.getId()));
     }
 
     @Test
     public void testFindAll() throws Exception {
 
-        assertThat(propertyService.findAll(), is(equalTo(Collections.emptyList())));
-
-        propertyService.save(propertyInDistrictBrnoStred);
-        propertyService.save(propertyInDistrictBrnoJih);
-
-        assertEquals(Arrays.asList(propertyInDistrictBrnoStred,propertyInDistrictBrnoJih), propertyService.findAll());
+        assertEquals(Arrays.asList(propertyService.findOne(1l),propertyService.findOne(2l)), propertyService.findAll());
         assertEquals(2, (propertyService.findAll()).size());
     }
 
     @Test
     public void testFindByAddressDistrictContainingIgnoreCase_MatchOneProperty() throws Exception {
 
-        assertThat(propertyService.findByAddressDistrictContainingIgnoreCase("Stred"), is(equalTo(Collections.emptyList())));
-
-        propertyService.save(propertyInDistrictBrnoStred);
-        propertyService.save(propertyInDistrictBrnoJih);
-
-        assertEquals(Arrays.asList(propertyInDistrictBrnoStred), propertyService.findByAddressDistrictContainingIgnoreCase("Stred"));
-        assertEquals( Arrays.asList(propertyInDistrictBrnoStred,propertyInDistrictBrnoJih), propertyService.findByAddressDistrictContainingIgnoreCase("Brno"));
+        assertEquals(Arrays.asList(propertyService.findOne(1l)), propertyService.findByAddressDistrictContainingIgnoreCase("Stred"));
+        assertEquals(Arrays.asList(propertyService.findOne(1l),propertyService.findOne(2l)), propertyService.findByAddressDistrictContainingIgnoreCase("Brno"));
     }
 
     @Test
     public void testFindByAddressDistrictContainingIgnoreCase_MatchNoneProperty() throws Exception {
-        propertyService.save(propertyInDistrictBrnoStred);
-        propertyService.save(propertyInDistrictBrnoJih);
 
         assertThat(propertyService.findByAddressDistrictContainingIgnoreCase("Sever"), is(equalTo(Collections.emptyList())));
     }
