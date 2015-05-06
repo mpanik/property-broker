@@ -23,4 +23,5 @@ public class PropertyResource {
     public Resources<Property> findAll() {
         return new Resources<>(propertyService.findAll());
     }
+
 }
