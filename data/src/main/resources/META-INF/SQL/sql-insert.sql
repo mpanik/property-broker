@@ -1051,7 +1051,7 @@ INSERT INTO Property (area, price, street, district, city, type) VALUES (35, 170
 INSERT INTO Property (area, price, street, district, city, type) VALUES (47, 1970000, 'Křenová', 'Trnitá', 'Brno', '1+1');
 INSERT INTO Property (area, price, street, district, city, type) VALUES (30, 1700000, 'Komín', 'Komín', 'Brno', '1+kk');
 INSERT INTO Property (area, price, street, district, city, type) VALUES (117, 3500000, 'Štěpánská', 'Trnitá', 'Brno', '4+1');
-INSERT INTO Property (area, price, street, district, city, type) VALUES (193, 7500000, 'Božetěchova', 'Královo pole', 'Brno', null);
+INSERT INTO Property (area, price, street, district, city, type) VALUES (193, 7500000, 'Božetěchova', 'Královo pole', 'Brno', '5+kk');
 INSERT INTO Property (area, price, street, district, city, type) VALUES (111, 5911288, 'Gajdošova', 'Židenice', 'Brno', '3+kk');
 INSERT INTO Property (area, price, street, district, city, type) VALUES (36, 1200000, 'Palackého třída', 'Brno-město', 'Brno', '1+1');
 INSERT INTO Property (area, price, street, district, city, type) VALUES (61, 3563208, 'Židenice', 'Židenice', 'Brno', '1+kk');
