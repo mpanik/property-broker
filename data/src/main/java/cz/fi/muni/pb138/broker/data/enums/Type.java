@@ -29,6 +29,8 @@ public enum Type {
     }
 
     public static Type fromString(String text) {
+        if (text == null || text.isEmpty())
+            return UNKNOWN_TYPE;
 
         for (Type type : Type.values()) {
             if (text.equalsIgnoreCase(type.text)) {

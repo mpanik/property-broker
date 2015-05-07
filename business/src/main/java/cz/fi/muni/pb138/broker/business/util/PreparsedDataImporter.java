@@ -16,7 +16,7 @@ public class PreparsedDataImporter {
     public void importData(List<Property> propertyList) throws Exception {
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("data/src/main/resources/META-INF/SQL/sql-insert.sql"), "utf-8"))) {
+                new FileOutputStream("data/src/main/resources/META-INF/sql/sql-insert.sql"), "utf-8"))) {
             for(Property property : propertyList) {
                 String insertStatement = prepareInsert(property);
                 writer.write(insertStatement);

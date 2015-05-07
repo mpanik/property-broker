@@ -8,13 +8,13 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Address {
-    @Column
+    @Column(length = 50)
     private String street;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 35)
     private String district;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String city;
 
     public String getStreet() {
