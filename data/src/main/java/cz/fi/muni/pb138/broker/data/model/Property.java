@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import cz.fi.muni.pb138.broker.data.enums.Type;
 import cz.fi.muni.pb138.broker.data.enums.TypeConverter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
