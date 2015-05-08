@@ -11,5 +11,6 @@
 
 ## Installation
  
-Run `mvn clean install` for building and installing all dependencies and `tomcat7:run` 
-for running tomcat and deploying war file to `http://localhost:8080/pbroker`.
+ * `H2 running in background`
+ * `mvn clean install` for building and installing all dependencies
+ * `tomcat7:run` for running tomcat and deploying war file to `http://localhost:8080/pbroker`

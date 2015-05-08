@@ -14,17 +14,17 @@
 
     <build>
         <plugins>
-            <!--<plugin>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<version>${maven-war-plugin}</version>-->
-                <!--<configuration>-->
-                    <!--<webResources>-->
-                        <!--<resource>-->
-                            <!--<directory>../frontend/dist</directory>-->
-                        <!--</resource>-->
-                    <!--</webResources>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin}</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>../frontend/dist</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
