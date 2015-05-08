@@ -12,7 +12,7 @@ version 0.11.1.
 ## Build & development
 
 Run `mvn clean install` for building and installing all dependencies and `grunt serve` for preview.
-gr
+
 ### Optimization
 
 exclude node, node_modules and bower_components in your IDE
