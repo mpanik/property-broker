@@ -72,25 +72,26 @@ public abstract class AbstractPropertyParser implements PropertyParser {
     }
 
     protected Property buildProperty(String type, Integer area, BigDecimal price, Address address) {
-        Property property = new Property();
+        Property.Builder builder=new Property.Builder();
+
         if(type != null) {
-            property.setType(Type.fromString(type));
+            builder.type(Type.fromString(type));
         }
         else {
-            property.setType(null);
+            builder.type(null);
         }
-        property.setArea(area);
-        property.setPrice(price);
-        property.setAddress(address);
-        return property;
+        builder.area(area);
+        builder.price(price);
+        builder.address(address);
+        return builder.build();
     }
 
     protected Address buildAddress(String street, String district, String city) {
-        Address address = new Address();
-        address.setCity(city);
-        address.setDistrict(district);
-        address.setStreet(street);
-        return address;
+        Address.Builder builder = new Address.Builder();
+        builder.city(city);
+        builder.district(district);
+        builder.street(street);
+        return builder.build();
     }
 
     protected Integer parseArea(String areaData) {
