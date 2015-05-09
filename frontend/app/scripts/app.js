@@ -8,14 +8,15 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('propertyBrokerApp', [
     'ngAnimate',
     'ngResource',
     'ngRoute',
     'uiGmapgoogle-maps'
-  ])
-  .config(function ($routeProvider, uiGmapGoogleMapApiProvider) {
+  ]);
+
+  app.config(function ($routeProvider, uiGmapGoogleMapApiProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -29,4 +30,15 @@ angular
       v: '3.17',
       libraries: 'weather,geometry,visualization'
     });
+
+   /* $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];*/
+
   });
+
+  app.factory('properties', ['$resource', function($resource) {
+
+    return $resource('localhost:8080/pbroker/rest/properties');
+
+  }]);
+

@@ -1,18 +1,14 @@
 package cz.fi.muni.pb138.broker.business.util;
 
-import cz.fi.muni.pb138.broker.business.parser.BrnenskeRealityParser;
-import cz.fi.muni.pb138.broker.business.parser.PropertyParser;
-import cz.fi.muni.pb138.broker.business.parser.SRealityParser;
 import cz.fi.muni.pb138.broker.data.model.Property;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Viki
  */
 public class PreparsedDataImporter {
-    
+
     public void importData(List<Property> propertyList) throws Exception {
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
