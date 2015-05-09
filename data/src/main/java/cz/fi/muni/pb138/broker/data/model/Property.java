@@ -1,8 +1,12 @@
 package cz.fi.muni.pb138.broker.data.model;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.deser.Deserializers;
 import cz.fi.muni.pb138.broker.data.enums.Type;
 import cz.fi.muni.pb138.broker.data.enums.TypeConverter;
+import cz.fi.muni.pb138.broker.data.model.Address;
+import cz.fi.muni.pb138.broker.data.model.BaseModel;
+import cz.fi.muni.pb138.broker.data.model.Property;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -35,6 +39,13 @@ public class Property extends BaseModel implements Serializable {
     @Column
     @Convert(converter = TypeConverter.class)
     private Type type;
+
+    private Property(Builder builder){
+        this.area = builder.area;
+        this.address = builder.address;
+        this.price = builder.price;
+        this.type = builder.type;
+    }
 
     public Long getId() {
         return  id;
@@ -102,4 +113,44 @@ public class Property extends BaseModel implements Serializable {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+
+    public static class Builder{
+
+        private Integer area;
+        private BigDecimal price;
+        private Address address;
+        private Type type;
+        protected Long id;
+
+        public Builder area(Integer area){
+            this.area = area;
+            return this;
+        }
+
+        public Builder price(BigDecimal price){
+            this.price = price;
+            return this;
+        }
+
+        public Builder address(Address address){
+            this.address = address;
+            return this;
+        }
+
+        public Builder type(Type type){
+            this.type = type;
+            return this;
+        }
+
+        public Builder id(Long id){
+            this.id = id;
+            return this;
+        }
+
+        public Property build(){
+            return new Property(this);
+        }
+    }
+
 }
