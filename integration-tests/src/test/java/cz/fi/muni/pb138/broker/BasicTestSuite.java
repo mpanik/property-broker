@@ -34,20 +34,20 @@ public class BasicTestSuite {
     }
 
     private Property buildProperty(Long id, Type type, Address addressBrnoJih, Integer area, BigDecimal price) {
-        Property property = new Property();
-        property.setId(id);
-        property.setType(type);
-        property.setArea(area);
-        property.setPrice(price);
-        property.setAddress(addressBrnoJih);
-        return property;
+        Property.Builder builder = new Property.Builder();
+        builder.type(type);
+        builder.area(area);
+        builder.price(price);
+        builder.address(addressBrnoJih);
+        builder.id(id);
+        return builder.build();
     }
 
     private Address buildAddress(String city, String district, String street) {
-        Address address = new Address();
-        address.setCity(city);
-        address.setDistrict(district);
-        address.setStreet(street);
-        return address;
+        Address.Builder builder = new Address.Builder();
+        builder.city(city);
+        builder.district(district);
+        builder.street(street);
+        return builder.build();
     }
 }
