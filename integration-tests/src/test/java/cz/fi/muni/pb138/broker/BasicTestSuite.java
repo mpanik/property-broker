@@ -33,21 +33,11 @@ public class BasicTestSuite {
         propertyInDistrictBrnoJih = buildProperty(2l, Type.THREE_KK, addressBrnoJih, 23, new BigDecimal("5600000.00"));
     }
 
-    private Property buildProperty(Long id, Type type, Address addressBrnoJih, Integer area, BigDecimal price) {
-        Property.Builder builder = new Property.Builder();
-        builder.type(type);
-        builder.area(area);
-        builder.price(price);
-        builder.address(addressBrnoJih);
-        builder.id(id);
-        return builder.build();
+    private Property buildProperty(Long id, Type type, Address address, Integer area, BigDecimal price) {
+        return new Property.Builder().id(id).type(type).address(address).area(area).price(price).build();
     }
 
     private Address buildAddress(String city, String district, String street) {
-        Address.Builder builder = new Address.Builder();
-        builder.city(city);
-        builder.district(district);
-        builder.street(street);
-        return builder.build();
+        return new Address.Builder().city(city).district(district).street(street).build();
     }
 }

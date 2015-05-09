@@ -1,7 +1,5 @@
 package cz.fi.muni.pb138.broker.data.model;
 
-import cz.fi.muni.pb138.broker.data.model.Address;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -20,12 +18,39 @@ public class Address {
     @Column(nullable = false, length = 15)
     private String city;
 
-    public  Address(){}
+    protected  Address() {
 
-    private Address(Builder builder){
+    }
+
+    private Address(Builder builder) {
         this.street = builder.street;
         this.district = builder.district;
         this.city = builder.city;
+    }
+
+    public static class Builder {
+        private String street;
+        private String district;
+        private String city;
+
+        public Builder street(String street) {
+            this.street = street;
+            return this;
+        }
+
+        public Builder city(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder district(String district) {
+            this.district = district;
+            return this;
+        }
+
+        public Address build() {
+            return new Address(this);
+        }
     }
 
     public String getStreet() {
@@ -77,32 +102,5 @@ public class Address {
                 ", district='" + district + '\'' +
                 ", city='" + city + '\'' +
                 '}';
-    }
-
-    public static class Builder{
-
-        private String street;
-        private String district;
-        private String city;
-
-        public Builder street(String street){
-            this.street = street;
-            return this;
-        }
-
-        public Builder city(String city){
-            this.city = city;
-            return this;
-        }
-
-        public Builder district(String district){
-            this.district = district;
-            return this;
-        }
-
-        public Address build(){
-            return new Address(this);
-        }
-
     }
 }
