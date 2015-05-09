@@ -1,5 +1,15 @@
 <div class="map">
-  <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+    <!-- Just for testing purposes -->
+    <div ng-repeat="property in properties">
+        <span>Area= {{property.area}}</span>
+        <span>Price= {{property.price}}</span>
+        <span>Type= {{property.type}}</span>
+        <span>Street= {{property.address.street}}</span>
+        <span>District= {{property.address.district}}</span>
+        <span>City= {{property.address.city}}</span>
+    </div>
 </div>
 
 

@@ -1,22 +1,12 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name propertyBrokerApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the propertyBrokerApp
- */
-angular.module('propertyBrokerApp')
-  .controller('MainCtrl', function ($http, $scope, uiGmapGoogleMapApi, properties) {
+angular.module('propertyBrokerApp.controllers').
+    controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, PropertyService) {
 
-      uiGmapGoogleMapApi.then(function() {
-        $scope.map = { center: { latitude: 49.2044255, longitude: 16.6325489 }, zoom: 12 };
-      });
+        uiGmapGoogleMapApi.then(function() {
+            $scope.map = { center: { latitude: 49.2044255, longitude: 16.6325489 }, zoom: 12 };
+        });
 
+        $scope.properties = PropertyService.findAll();
 
-    properties.query(function(props) {
-       console.log(props);
     });
-
-  });
