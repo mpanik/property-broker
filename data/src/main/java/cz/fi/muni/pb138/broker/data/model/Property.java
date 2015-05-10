@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -35,6 +36,10 @@ public class Property extends BaseModel implements Serializable {
     @Column
     @Convert(converter = TypeConverter.class)
     private Type type;
+
+    @Embedded
+    @Column
+    private Point2D streetCoords;
 
     protected Property() {
 
@@ -121,26 +126,36 @@ public class Property extends BaseModel implements Serializable {
         this.type = type;
     }
 
+    public Point2D getStreetCoords() {
+        return streetCoords;
+    }
+
+    public void setStreetCoords(Point2D streetCoords) {
+        this.streetCoords = streetCoords;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Property)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Property property = (Property) o;
 
-        if (!area.equals(property.area)) return false;
-        if (!price.equals(property.price)) return false;
-        if (!address.equals(property.address)) return false;
-        return !(type != null ? !type.equals(property.type) : property.type != null);
+        if (area != null ? !area.equals(property.area) : property.area != null) return false;
+        if (price != null ? !price.equals(property.price) : property.price != null) return false;
+        if (address != null ? !address.equals(property.address) : property.address != null) return false;
+        if (type != property.type) return false;
+        return !(streetCoords != null ? !streetCoords.equals(property.streetCoords) : property.streetCoords != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = area.hashCode();
-        result = 31 * result + price.hashCode();
-        result = 31 * result + address.hashCode();
+        int result = area != null ? area.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (streetCoords != null ? streetCoords.hashCode() : 0);
         return result;
     }
 
@@ -150,7 +165,8 @@ public class Property extends BaseModel implements Serializable {
                 "area=" + area +
                 ", price=" + price +
                 ", address=" + address +
-                ", type='" + type + '\'' +
+                ", type=" + type +
+                ", streetCoords=" + streetCoords +
                 '}';
     }
 }

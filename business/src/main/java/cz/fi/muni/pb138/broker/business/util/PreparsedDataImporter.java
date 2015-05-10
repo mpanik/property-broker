@@ -11,8 +11,9 @@ public class PreparsedDataImporter {
 
     public void importData(List<Property> propertyList) throws Exception {
 
+        addCoordinatesToProperties(propertyList);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("data/src/main/resources/META-INF/SQL/sql-insert.SQL"), "utf-8"))) {
+                new FileOutputStream("data/src/main/resources/META-INF/sql/sql-insert.SQL"), "utf-8"))) {
             for(Property property : propertyList) {
                 String insertStatement = prepareInsert(property);
                 writer.write(insertStatement);
@@ -47,11 +48,26 @@ public class PreparsedDataImporter {
         else {
             type = "'" + property.getType().getText() + "'";
         }
-        String insertStatement = "INSERT INTO Property (area, price, street, district, city, type) VALUES (" + area
+
+        String streetXCoord = "null";
+        String streetYCoord = "null";
+        if(property.getStreetCoords() != null) {
+            streetXCoord = Double.toString(property.getStreetCoords().getX());
+            streetYCoord = Double.toString(property.getStreetCoords().getY());
+        }
+
+        String insertStatement = "INSERT INTO Property (area, price, street, district, city, type, x, y) VALUES (" + area
                 + ", " + price + ", "  + street
                 + ", " + district + ", " + city + ", "
-                + type + ");";
+                + type + ", " + streetXCoord + ", " + streetYCoord + ");";
 
         return insertStatement;
     }
+
+    private void addCoordinatesToProperties(List<Property> properties) {
+        CoordsEnquirer enquirer = new CoordsEnquirer();
+        enquirer.addCoords(properties);
+    }
+
+
 }
