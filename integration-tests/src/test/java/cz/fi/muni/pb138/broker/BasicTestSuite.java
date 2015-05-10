@@ -26,18 +26,10 @@ public class BasicTestSuite {
 
     @Before
     public void setUp() {
-        Address addressBrnoStred = buildAddress("Brno", "Brno-Stred", "Orli");
-        propertyInDistrictBrnoStred = buildProperty(1l, Type.FIVE_KK, addressBrnoStred, 50, new BigDecimal("10000000.00"));
+        Address addressBrnoStred = new Address.Builder().city("Brno").district("Brno-Stred").street("Orli").build();
+        propertyInDistrictBrnoStred = new Property.Builder().id(1l).type(Type.FIVE_KK).address(addressBrnoStred).area(50).price(new BigDecimal("10000000.00")).build();
 
-        Address addressBrnoJih = buildAddress("Brno", "Brno-Jih", "Lomena");
-        propertyInDistrictBrnoJih = buildProperty(2l, Type.THREE_KK, addressBrnoJih, 23, new BigDecimal("5600000.00"));
-    }
-
-    private Property buildProperty(Long id, Type type, Address address, Integer area, BigDecimal price) {
-        return new Property.Builder().id(id).type(type).address(address).area(area).price(price).build();
-    }
-
-    private Address buildAddress(String city, String district, String street) {
-        return new Address.Builder().city(city).district(district).street(street).build();
+        Address addressBrnoJih = new Address.Builder().city("Brno").district("Brno-Jih").street("Lomena").build();
+        propertyInDistrictBrnoJih = new Property.Builder().id(2l).type(Type.THREE_KK).address(addressBrnoJih).area(23).price(new BigDecimal("5600000.00")).build();
     }
 }
