@@ -39,6 +39,19 @@
       <div ng-view=""></div>
     </div>
 
+<div class='container'>
+    <div ng-controller="SearchCtrl">
+        </br>
+        Seach: <input type="text" ng-model="selected" typeahead="property as (property.City + ' '+property.Street + ' ' + property.District) for property in properties | filter:$viewValue" />
+        </br>
+        <b>Selected property:</b>
+
+        {{selected}}
+
+    </div>
+</div>
+
+
     <footer>
       <div class="container">
         <p>Copyright &copy; 2015 <a href="https://github.com/Milan26/property-broker">P-Broker</a>. All Rights Reserved.</p>
