@@ -18,3 +18,16 @@ footer {
 .angular-google-map-container {
     height: 600px;
 }
+
+.dropdown-menu {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.search-directive {
+    margin-bottom: 15px;
+}
+
+.search-directive input {
+    min-width: 400px;
+}

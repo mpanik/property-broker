@@ -1,0 +1,15 @@
+<div class="search-directive form-inline">
+    <div class="form-group">
+        <label>Search: </label>
+        <input type="text"
+               class="form-control"
+               placeholder="Start typing..."
+               ng-model="selected"
+               typeahead-min-length="1"
+               typeahead-wait-ms="400"
+               typeahead-on-select="propertySelected($item)"
+               typeahead="property as (property.Street + ', ' + property.District + ' [' + property.Area + ' m2, ' + property.Price + ' CZK]') for property in values | filter:$viewValue" />
+    </div>
+</div>
+
+
