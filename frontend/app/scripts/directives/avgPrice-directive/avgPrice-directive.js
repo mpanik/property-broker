@@ -40,32 +40,31 @@ angular.module('propertyBrokerApp.directives')
                     }
                 };
 
+
+                function sumValues(valueA,valueB){
+                    return  parseInt(valueA) + parseInt(valueB);
+                }
+
+                function divideValues(valueA,valueB){
+                    return  Math.round( parseInt(valueA) / parseInt(valueB));
+                }
+
+
                 function getDistrictStats(properties) {
                     var pricesInDistricts = [];
 
                     properties.forEach(function (property) {
                         var isDistrictListed = false;
-                        if (pricesInDistricts.length === 0) {
-                            pricesInDistricts.push({
-                                District: property.District,
-                                SumPrices: parseInt(property.Price),
-                                SumArea: parseInt(property.Area),
-                                Count: 1,
-                                MostExpensive: property,
-                                Cheapest: property,
-                                Properties: [property]
-                            });
-                            isDistrictListed = true;
-                        }
+
                         pricesInDistricts.forEach(function (propByDistrict) {
                             if (property.District === propByDistrict.District && !isDistrictListed) {
-                                isDistrictListed = true;
-                                propByDistrict.SumPrices = parseInt(propByDistrict.SumPrices) + parseInt(property.Price);
-                                propByDistrict.SumArea = parseInt(propByDistrict.SumArea) + parseInt(property.Area);
-                                propByDistrict.Count = parseInt(propByDistrict.Count) + 1;
+                                propByDistrict.SumPrices =sumValues(propByDistrict.SumPrices,property.Price);
+                                propByDistrict.SumArea = sumValues(propByDistrict.SumArea,property.Area);
+                                propByDistrict.Count = sumValues(propByDistrict.Count,1);
                                 propByDistrict.MostExpensive = getMinMaxPrice(false, propByDistrict.MostExpensive, property);
                                 propByDistrict.Cheapest = getMinMaxPrice(true, propByDistrict.Cheapest, property);
                                 propByDistrict.Properties.push(property);
+                                isDistrictListed = true;
                             }
                         });
                         if (!isDistrictListed) {
@@ -92,9 +91,9 @@ angular.module('propertyBrokerApp.directives')
                         avgPricesInDistricts.push(
                             {
                                 District: propByDistrict.District,
-                                AvgPriceMSquare: Math.round(parseInt(propByDistrict.SumPrices) / parseInt(propByDistrict.SumArea)),
+                                AvgPriceMSquare: divideValues(propByDistrict.SumPrices, propByDistrict.SumArea),
                                 Count: propByDistrict.Count,
-                                AvgPrice: Math.round(parseInt(propByDistrict.SumPrices) / parseInt(propByDistrict.Count)),
+                                AvgPrice: divideValues(propByDistrict.SumPrices,propByDistrict.Count),
                                 MostExpensive: propByDistrict.MostExpensive,
                                 Cheapest: propByDistrict.Cheapest
                             }
@@ -102,7 +101,6 @@ angular.module('propertyBrokerApp.directives')
                     });
                     return avgPricesInDistricts;
                 }
-
 
                 function getStreetStats() {
 
@@ -116,26 +114,15 @@ angular.module('propertyBrokerApp.directives')
                         district.Properties.forEach(function (propertyStreet) {
 
                             var isStreetListed = false;
-                            if (pricesAllStreets.length === 0) {
-                                pricesAllStreets.push({
-                                    Street: propertyStreet.Street,
-                                    SumPrices: parseInt(propertyStreet.Price),
-                                    SumArea: parseInt(propertyStreet.Area),
-                                    Count: 1,
-                                    MostExpensive: propertyStreet,
-                                    Cheapest: propertyStreet
-                                });
-                                isStreetListed = true;
-                            }
 
                             pricesAllStreets.forEach(function (propByDistrict) {
                                 if (propertyStreet.Street === propByDistrict.Street && !isStreetListed) {
-                                    isStreetListed = true;
-                                    propByDistrict.SumPrices = parseInt(propByDistrict.SumPrices) + parseInt(propertyStreet.Price);
-                                    propByDistrict.SumArea = parseInt(propByDistrict.SumArea) + parseInt(propertyStreet.Area);
-                                    propByDistrict.Count = parseInt(propByDistrict.Count) + 1;
+                                    propByDistrict.SumPrices = sumValues(propByDistrict.SumPrices,propertyStreet.Price);
+                                    propByDistrict.SumArea = sumValues(propByDistrict.SumArea,propertyStreet.Area);
+                                    propByDistrict.Count =sumValues(propByDistrict.Count,1);
                                     propByDistrict.MostExpensive = getMinMaxPrice(false, propByDistrict.MostExpensive, propertyStreet);
                                     propByDistrict.Cheapest = getMinMaxPrice(true, propByDistrict.Cheapest, propertyStreet);
+                                    isStreetListed = true;
                                 }
                             });
 
@@ -175,9 +162,9 @@ angular.module('propertyBrokerApp.directives')
                             streetsStat.push(
                                 {
                                     Street: propByStreet.Street,
-                                    AvgPriceMSquare: Math.round(parseInt(propByStreet.SumPrices) / parseInt(propByStreet.SumArea)),
+                                    AvgPriceMSquare: divideValues(propByStreet.SumPrices,propByStreet.SumArea),
                                     Count: propByStreet.Count,
-                                    AvgPrice: Math.round(parseInt(propByStreet.SumPrices) / parseInt(propByStreet.Count)),
+                                    AvgPrice: divideValues(propByStreet.SumPrices,propByStreet.Count),
                                     MostExpensive: propByStreet.MostExpensive,
                                     Cheapest: propByStreet.Cheapest
                                 }
