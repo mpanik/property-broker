@@ -49,12 +49,9 @@ public class PreparsedDataImporter {
             type = "'" + property.getType().getText() + "'";
         }
 
-        String streetXCoord = "null";
-        String streetYCoord = "null";
-        if(property.getStreetCoords() != null) {
-            streetXCoord = Double.toString(property.getStreetCoords().getX());
-            streetYCoord = Double.toString(property.getStreetCoords().getY());
-        }
+        String streetXCoord = Double.toString(property.getStreetCoords().getX());
+        String streetYCoord = Double.toString(property.getStreetCoords().getY());
+
 
         String insertStatement = "INSERT INTO Property (area, price, street, district, city, type, x, y) VALUES (" + area
                 + ", " + price + ", "  + street
