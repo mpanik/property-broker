@@ -1,3 +1,79 @@
 <div class="avgPrice-directive">
+    <table class="table table-bordered">
+        <tr class="days">
+            <th>District</th>
+            <th>Avg Price [czk/m2]</th>
+            <th>Count</th>
+            <!-- pocect nehnutelnosti na predja v districte-->
+            <th>Avg Price</th>
+            <th>Most Expensive Property in District</th>
+            <th>Cheapest Property in District</th>
+        </tr>
+        <tr ng-repeat="districtValue in districtsStats | orderBy:'-AvgPriceMSquare'">
+            <td>
+                {{districtValue.District}}
+            </td>
+            <td>
+                {{districtValue.AvgPriceMSquare}}
+            </td>
+            <td>
+                {{districtValue.Count}}
+            </td>
+            <td>
+                {{districtValue.AvgPrice}}
+            </td>
+            <td>
+                {{districtValue.MostExpensive.Street}}, [{{districtValue.MostExpensive.Area}} m2
+                ,{{districtValue.MostExpensive.Price}} czk]
+            </td>
+            <td>
+                {{districtValue.Cheapest.Street}}, [{{districtValue.Cheapest.Area}} m2 ,{{districtValue.Cheapest.Price}}
+                czk]
+            </td>
+        </tr>
+    </table>
+
+
+    <br/>
+    <br/>
+    <br/>
+
+    <h1>Avg Prices in Streets by Districts</h1>
+    <span ng-repeat="districtValues in streetStats ">
+        <h2> {{districtValues.District}}</h2>
+        <table class="table table-bordered">
+            <tr class="days">
+                <th>Street Name</th>
+                <th>Avg Price [czk/m2]</th>
+                <th>Count</th>
+                <!-- pocect nehnutelnosti na predja v ulici-->
+                <th>Avg Price</th>
+                <th>Most Expensive Property in Street</th>
+                <th>Cheapest Property in Street</th>
+            </tr>
+            <tr ng-repeat="districtValue in districtValues.Streets  | orderBy:'-AvgPriceMSquare' ">
+                <td>
+                    {{districtValue.Street}}
+                </td>
+                <td>
+                    {{districtValue.AvgPriceMSquare}}
+                </td>
+                <td>
+                    {{districtValue.Count}}
+                </td>
+                <td>
+                    {{districtValue.AvgPrice}}
+                </td>
+                <td>
+                    {{districtValue.MostExpensive.Street}}, [{{districtValue.MostExpensive.Area}} m2
+                    ,{{districtValue.MostExpensive.Price}} czk]
+                </td>
+                <td>
+                    {{districtValue.Cheapest.Street}}, [{{districtValue.Cheapest.Area}} m2 ,{{districtValue.Cheapest.Price}}
+                    czk]
+                </td>
+            </tr>
+        </table>
+    </span>
 
 </div>
