@@ -133,7 +133,7 @@ public class Property extends BaseModel implements Serializable {
         this.type = type;
     }
 
-    public Point2D getCoords() {
+    public Point2D.Double getCoords() {
         return coords;
     }
 
