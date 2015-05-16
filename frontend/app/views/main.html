@@ -1,14 +1,20 @@
-<search values="properties"></search>
+<div ng-if="serverError">
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error: </span>Failed to connect to server. Please try again later.
+    </div>
+</div>
+
+<search data="properties"></search>
 
 <div class="map">
     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-       <ui-gmap-markers
-            models='markers'
-            coords='"coords"'
-            >
-        </ui-gmap-markers>
+       <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
     </ui-gmap-google-map>
 </div>
 
-<h3>--- Avg Prices:</h3>
-<avg-price values="properties"></avg-price>
+<div ng-if="serverError">
+    <h3>--- Stats:</h3>
+    <statistics data="properties"></statistics>
+</div>
+

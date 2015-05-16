@@ -6,9 +6,13 @@ angular.module('propertyBrokerApp.directives')
             templateUrl: 'scripts/directives/search-directive/search-directive.html',
             restrict: 'E',
             scope: {
-                values: '='
+                data: '='
             },
             controller: ['$scope', function ($scope) {
+
+                $scope.$watch('values', function (newValue) {
+                    $scope.data = newValue;
+                }, true);
 
                 $scope.propertySelected = function(selected) {
                     console.log(selected);
@@ -16,23 +20,19 @@ angular.module('propertyBrokerApp.directives')
                     //TODO: better info (not alert) + show on map (with different colored marker), when unselected remove marker from map
                 };
 
-                $scope.$watch('values', function (newValue) {
-                    $scope.values = newValue;
-                }, true);
+                function buildMarkersArray(properties) {
+                    var markers = [];
+                    var id = 0;
+                    for(var i = 0; i < properties.length; i++) {
+                        var latitude = properties[i].x;
+                        var longitude = properties[i].y;
+                        var marker = {id: id, coords: {latitude: latitude, longitude: longitude}};
+                        id++;
+                        markers.push(marker);
+                    }
+                    return markers;
+                }
 
             }]
         };
     });
-
-function buildMarkersArray(properties) {
-    var markers = [];
-    var id = 0;
-    for(var i = 0; i < properties.length; i++) {
-        var latitude = properties[i].x;
-        var longitude = properties[i].y;
-        var marker = {id: id, coords: {latitude: latitude, longitude: longitude}};
-        id++;
-        markers.push(marker);
-    }
-    return markers;
-}
