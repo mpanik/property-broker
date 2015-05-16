@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Created by viki on 10.5.15.
+ * @author Viki
  */
 public class CoordsEnquirer {
 
@@ -27,26 +27,26 @@ public class CoordsEnquirer {
                 }
                 String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
                         streetForUrl + ",+" + property.getAddress().getCity();
-                Point2D streetLocation = getCoords(url);
-                property.setStreetCoords(streetLocation);
+                Point2D.Double streetLocation = getCoords(url);
+                property.setCoords(streetLocation);
             }
         }
         fillBlanks(properties, Type.STREET);
         for (Property property : properties) {
-            if (property.getAddress().getStreet() == null || (property.getStreetCoords().getX() == 0.0 && property.getStreetCoords().getY() == 0)) {
+            if (property.getAddress().getStreet() == null || (property.getCoords().getX() == 0.0 && property.getCoords().getY() == 0)) {
                 String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
                         property.getAddress().getDistrict() + ",+" + property.getAddress().getCity();
-                Point2D streetLocation = getCoords(url);
-                property.setStreetCoords(streetLocation);
+                Point2D.Double streetLocation = getCoords(url);
+                property.setCoords(streetLocation);
             }
         }
         fillBlanks(properties, Type.DISTRICT);
         return properties;
     }
 
-    private Point2D getCoords(String url) {
+    private Point2D.Double getCoords(String url) {
 
-        Point2D streetLocation;
+        Point2D.Double streetLocation;
         try {
             String response = readUrl(url, "utf-8");
             JSONObject responseJSON = new JSONObject(response);
@@ -68,9 +68,9 @@ public class CoordsEnquirer {
     private void fillBlanks(List<Property> properties, Type type) {
 
         for (Property property : properties) {
-            if (property.getStreetCoords() != null && property.getStreetCoords().getX() == 0.0 && property.getStreetCoords().getY() == 0.0) {
+            if (property.getCoords() != null && property.getCoords().getX() == 0.0 && property.getCoords().getY() == 0.0) {
                 for (Property propToCompareWith : properties) {
-                    if (propToCompareWith.getStreetCoords() != null) {
+                    if (propToCompareWith.getCoords() != null) {
                         String thisPropValue = null;
                         String otherPropValue = null;
                         if (type == Type.STREET) {
@@ -80,12 +80,12 @@ public class CoordsEnquirer {
                             thisPropValue = property.getAddress().getDistrict();
                             otherPropValue = propToCompareWith.getAddress().getDistrict();
                         }
-                        double otherPropX = propToCompareWith.getStreetCoords().getX();
-                        double otherPropY = propToCompareWith.getStreetCoords().getY();
+                        double otherPropX = propToCompareWith.getCoords().getX();
+                        double otherPropY = propToCompareWith.getCoords().getY();
                         if (thisPropValue != null && otherPropValue != null && thisPropValue.equals(otherPropValue)
                                 && otherPropX != 0.0 && otherPropY != 0.0) {
-                            Point2D newCoords = new Point2D.Double(otherPropX, otherPropY);
-                            property.setStreetCoords(newCoords);
+                            Point2D.Double newCoords = new Point2D.Double(otherPropX, otherPropY);
+                            property.setCoords(newCoords);
                             break;
                         }
                     }

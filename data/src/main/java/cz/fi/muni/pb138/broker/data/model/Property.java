@@ -39,7 +39,7 @@ public class Property extends BaseModel implements Serializable {
 
     @Embedded
     @Column
-    private Point2D streetCoords;
+    private Point2D.Double coords;
 
     protected Property() {
 
@@ -51,6 +51,7 @@ public class Property extends BaseModel implements Serializable {
         this.address = builder.address;
         this.price = builder.price;
         this.type = builder.type;
+        this.coords = builder.coords;
     }
 
     public static class Builder {
@@ -59,6 +60,7 @@ public class Property extends BaseModel implements Serializable {
         private BigDecimal price;
         private Address address;
         private Type type;
+        private Point2D.Double coords;
 
         public Builder id(Long id) {
             this.id = id;
@@ -82,6 +84,11 @@ public class Property extends BaseModel implements Serializable {
 
         public Builder type(Type type) {
             this.type = type;
+            return this;
+        }
+
+        public Builder coords(Point2D.Double coords) {
+            this.coords = coords;
             return this;
         }
 
@@ -126,12 +133,12 @@ public class Property extends BaseModel implements Serializable {
         this.type = type;
     }
 
-    public Point2D getStreetCoords() {
-        return streetCoords;
+    public Point2D getCoords() {
+        return coords;
     }
 
-    public void setStreetCoords(Point2D streetCoords) {
-        this.streetCoords = streetCoords;
+    public void setCoords(Point2D.Double coords) {
+        this.coords = coords;
     }
 
     @Override
@@ -145,7 +152,7 @@ public class Property extends BaseModel implements Serializable {
         if (price != null ? !price.equals(property.price) : property.price != null) return false;
         if (address != null ? !address.equals(property.address) : property.address != null) return false;
         if (type != property.type) return false;
-        return !(streetCoords != null ? !streetCoords.equals(property.streetCoords) : property.streetCoords != null);
+        return !(coords != null ? !coords.equals(property.coords) : property.coords != null);
 
     }
 
@@ -155,7 +162,7 @@ public class Property extends BaseModel implements Serializable {
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (streetCoords != null ? streetCoords.hashCode() : 0);
+        result = 31 * result + (coords != null ? coords.hashCode() : 0);
         return result;
     }
 
@@ -166,7 +173,7 @@ public class Property extends BaseModel implements Serializable {
                 ", price=" + price +
                 ", address=" + address +
                 ", type=" + type +
-                ", streetCoords=" + streetCoords +
+                ", coords=" + coords +
                 '}';
     }
 }

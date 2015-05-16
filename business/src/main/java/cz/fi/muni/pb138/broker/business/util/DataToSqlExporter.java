@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Viki
  */
-public class PreparsedDataImporter {
+public class DataToSqlExporter {
 
     public void importData(List<Property> propertyList) throws Exception {
 
@@ -49,8 +49,8 @@ public class PreparsedDataImporter {
             type = "'" + property.getType().getText() + "'";
         }
 
-        String streetXCoord = Double.toString(property.getStreetCoords().getX());
-        String streetYCoord = Double.toString(property.getStreetCoords().getY());
+        String streetXCoord = Double.toString(property.getCoords().getX());
+        String streetYCoord = Double.toString(property.getCoords().getY());
 
 
         String insertStatement = "INSERT INTO Property (area, price, street, district, city, type, x, y) VALUES (" + area
