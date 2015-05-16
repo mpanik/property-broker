@@ -10,7 +10,7 @@ angular.module('propertyBrokerApp.directives')
             },
             controller: ['$scope', function ($scope) {
 
-                $scope.$watch('values', function (newValue) {
+                $scope.$watch('data', function (newValue) {
                     $scope.data = newValue;
                 }, true);
 
