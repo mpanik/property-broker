@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module('propertyBrokerApp.directives')
-    .directive('avgPrice', function () {
+    .directive('statistics', function () {
         return {
-            templateUrl: 'scripts/directives/avgPrice-directive/avgPrice-directive.html',
+            templateUrl: 'scripts/directives/statistics-directive/avgPrice-directive.html',
             restrict: 'E',
             scope: {
-                values: '='
+                data: '='
             },
             controller: ['$scope', function ($scope) {
 
                 $scope.$watch('values', function (newValue) {
-                    $scope.values = newValue;
+                    $scope.data = newValue;
                 }, true);
 
                 //TODO: load data from database
