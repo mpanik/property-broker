@@ -6,16 +6,25 @@ angular.module('propertyBrokerApp.directives')
             templateUrl: 'scripts/directives/search-directive/search-directive.html',
             restrict: 'E',
             scope: {
-                data: '='
+                data: '=',
+                marker: '='
             },
             controller: ['$scope', function ($scope) {
 
-                $scope.$watch('data', function (newValue) {
-                    $scope.data = newValue;
+                $scope.$watchCollection(['data', 'marker'], function (newValues) {
+                    $scope.data = newValues[0];
+                    $scope.marker = newValues[1];
                 }, true);
 
                 $scope.propertySelected = function(selected) {
                     console.log(selected);
+                    $scope.marker = {
+                        id: 0,
+                        coords: {
+                            latitude: selected.coords.x,
+                            longitude: selected.coords.y
+                        }
+                    };
                     //$scope.markers = buildMarkersArray($scope.propertySelected);
                     //TODO: better info (not alert) + show on map (with different colored marker), when unselected remove marker from map
                 };

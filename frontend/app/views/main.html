@@ -9,11 +9,11 @@
 
 <div class="map">
     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-       <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
+        <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
     </ui-gmap-google-map>
 </div>
 
-<div ng-if="!serverError">
+<div ng-if="!serverError && properties !== undefined">
     <h3>--- Stats:</h3>
     <statistics data="properties"></statistics>
 </div>
