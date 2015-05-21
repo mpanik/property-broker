@@ -54,7 +54,6 @@ angular.module('propertyBrokerApp.directives')
                                 propByDistrict.cheapest = getMinMaxPrice(true, propByDistrict.cheapest, property);
                                 propByDistrict.properties.push(property);
                                 isDistrictListed = true;
-                                console.log(propByDistrict.Cheapest);
                             }
                         });
                         if (!isDistrictListed) {
