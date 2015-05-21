@@ -4,6 +4,7 @@ angular.module('propertyBrokerApp.controllers').
     controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, PropertyService) {
 
         $scope.marker = {};
+        $scope.marker.id = 0;
         $scope.markers = [];
 
         $scope.$watch('marker', function (newValue) {
