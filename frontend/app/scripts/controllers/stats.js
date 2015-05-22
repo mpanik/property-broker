@@ -1,13 +1,6 @@
 'use strict';
-
 angular.module('propertyBrokerApp.controllers').
-    controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, PropertyService) {
-
-        $scope.markers = [];
-
-        uiGmapGoogleMapApi.then(function() {
-            $scope.map = { center: { latitude: 49.2044255, longitude: 16.6325489 }, zoom: 12 };
-        });
+    controller('StatsCtrl', function ($scope, PropertyService) {
 
         PropertyService.findAll(
             function(data) {
@@ -20,8 +13,3 @@ angular.module('propertyBrokerApp.controllers').
         );
 
     });
-
-
-
-
-
