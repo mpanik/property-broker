@@ -19,7 +19,6 @@ angular.module('propertyBrokerApp.directives')
                 $scope.propertySelected = function(selected) {
                     console.log(selected);
                     $scope.marker = {
-                        id: 0,
                         coords: {
                             latitude: selected.coords.x,
                             longitude: selected.coords.y
