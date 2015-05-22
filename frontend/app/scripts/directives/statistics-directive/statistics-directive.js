@@ -50,13 +50,15 @@ angular.module('propertyBrokerApp.directives')
                                 propByDistrict.sumPrices =sumValues(propByDistrict.sumPrices,property.price);
                                 propByDistrict.sumArea = sumValues(propByDistrict.sumArea,property.area);
                                 propByDistrict.count = sumValues(propByDistrict.count,1);
-                                propByDistrict.mostExpensive = getMinMaxPrice(false, propByDistrict.mostExpensive, property);
-                                propByDistrict.cheapest = getMinMaxPrice(true, propByDistrict.cheapest, property);
+                                if(property.address.street !=null){
+                                    propByDistrict.mostExpensive = getMinMaxPrice(false, propByDistrict.mostExpensive, property);
+                                    propByDistrict.cheapest = getMinMaxPrice(true, propByDistrict.cheapest, property);
+                                }
                                 propByDistrict.properties.push(property);
                                 isDistrictListed = true;
                             }
                         });
-                        if (!isDistrictListed) {
+                        if (!isDistrictListed && property.address.street !=null ) {
                             pricesInDistricts.push({
                                 district: property.address.district,
                                 sumPrices: parseInt(property.price),
@@ -108,7 +110,7 @@ angular.module('propertyBrokerApp.directives')
                             var isStreetListed = false;
 
                             pricesAllStreets.forEach(function (propByDistrict) {
-                                if (propertyStreet.address.street === propByDistrict.street && !isStreetListed) {
+                                if (propertyStreet.address.street === propByDistrict.street && !isStreetListed ) {
                                     propByDistrict.sumPrices = sumValues(propByDistrict.sumPrices,propertyStreet.price);
                                     propByDistrict.sumArea = sumValues(propByDistrict.sumArea,propertyStreet.area);
                                     propByDistrict.count =sumValues(propByDistrict.count,1);
@@ -118,7 +120,7 @@ angular.module('propertyBrokerApp.directives')
                                 }
                             });
 
-                            if (!isStreetListed) {
+                            if (!isStreetListed && propertyStreet.address.street!=null) {
                                 pricesAllStreets.push({
                                     street: propertyStreet.address.street,
                                     sumPrices: parseInt(propertyStreet.price),
