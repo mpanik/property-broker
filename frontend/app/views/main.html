@@ -1,16 +1,36 @@
-<div ng-if="serverError">
-    <div class="alert alert-danger" role="alert">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error: </span>Failed to connect to server. Please try again later.
+<div class="wrap">
+    <div ng-if="serverError">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error: </span>Failed to connect to server. Please try again later.
+        </div>
     </div>
+
+    <search data="properties"></search>
+
+    <div class="map">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+            <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
+
+
+    <div class="properties-with-pages" ng-controller="PaginationCtrl">
+        <div class="properties-sidebar">
+            <div class="property" ng-repeat="property in filteredProperties">
+                    <table>
+                        <th>Property</th>
+                        <tr><td>Address: {{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</td></tr>
+                        <tr><td>Type: {{ property.type }}</td></tr>
+                        <tr><td>Area: {{ property.area }}</td></tr>
+                        <tr><td>Price: {{ property.price }}</td></tr>
+                    </table>
+            </div>
+        </div>
+        <div class="pagination">
+            <pagination total-items="totalItems" items-per-page="itemsPerPage" max-size= "maxSize" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+        </div>
+    </div>
+
 </div>
-
-<search data="properties"></search>
-
-<div class="map">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-        <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
-    </ui-gmap-google-map>
-</div>
-
 
