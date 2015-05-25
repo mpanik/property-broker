@@ -1,0 +1,18 @@
+<div >
+    <search data="properties" query="query"></search>
+
+    <div ng-repeat="property in filteredProperties">
+        <!-- TODO: design -->
+        <span>Property</span>
+        <span>Address: {{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</span>
+        <span>Type: {{ property.type }}</span>
+        <span>Area: {{ property.area }}</span>
+        <span>Price: {{ property.price }}</span>
+    </div>
+    <pagination total-items="totalItems"
+                items-per-page="itemsPerPage"
+                max-size= "maxSize"
+                ng-model="currentPage"
+                ng-change="pageChanged()">
+    </pagination>
+</div>

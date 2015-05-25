@@ -12,7 +12,7 @@ angular.module('propertyBrokerApp.directives')
 
                 $scope.$watch('data', function (newValue) {
                     $scope.data = newValue;
-                }, true);
+                }, false);
 
                 function getMinMaxPrice(boolMin, propertyA, propertyB) {
                     var price;
