@@ -6,10 +6,11 @@
     "bootstrap": "latest",
     "angular-animate": "latest",
     "angular-resource": "latest",
-    "angular-route": "latest",
     "angular-ui": "latest",
     "angular-google-maps": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "angular-growl-v2": "latest"
   },
   "devDependencies": {
     "angular-mocks": "latest"

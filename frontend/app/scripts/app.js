@@ -2,21 +2,24 @@
 
 angular.module('propertyBrokerApp', [
     'ngAnimate',
-    'uiGmapgoogle-maps',
     'ui.bootstrap',
+    'angular-growl',
     'propertyBrokerApp.routes',
     'propertyBrokerApp.services',
     'propertyBrokerApp.controllers',
     'propertyBrokerApp.directives'
 ])
-    .config(function (uiGmapGoogleMapApiProvider) {
-        uiGmapGoogleMapApiProvider.configure({
-            v: '3.17',
-            libraries: 'weather,geometry,visualization'
-        });
-    });
+    .config(['uiGmapGoogleMapApiProvider', 'growlProvider',
+        function (uiGmapGoogleMapApiProvider, growlProvider) {
+            uiGmapGoogleMapApiProvider.configure({
+                v: '3.17',
+                libraries: 'weather,geometry,visualization'
+            });
 
-angular.module('propertyBrokerApp.routes', ['ngRoute']);
+            growlProvider.globalTimeToLive(5000);
+        }]);
+
+angular.module('propertyBrokerApp.routes', ['ui.router']);
 angular.module('propertyBrokerApp.services', ['ngResource']);
-angular.module('propertyBrokerApp.controllers', []);
+angular.module('propertyBrokerApp.controllers', ['uiGmapgoogle-maps']);
 angular.module('propertyBrokerApp.directives', []);

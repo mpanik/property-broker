@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('propertyBrokerApp.services')
-    .service('PropertyService', function ($resource) {
+    .service('PropertyService', ['$resource', function ($resource) {
 
         var baseUrl = 'http://localhost:8080/pbroker/rest/properties';
 
@@ -9,5 +9,6 @@ angular.module('propertyBrokerApp.services')
             findAll: {method: 'GET', isArray:true}
         });
 
-    });
+    }]
+);
 

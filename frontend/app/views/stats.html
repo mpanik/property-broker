@@ -1,11 +1,3 @@
-<div ng-if="serverError">
-    <div class="alert alert-danger" role="alert">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error: </span>Failed to connect to server. Please try again later.
-    </div>
-</div>
-
-<div ng-if="!serverError && properties !== undefined">
-    <h3>--- Stats:</h3>
+<div ng-if="!serverError && properties !== undefined" ng-cloak>
     <statistics data="properties"></statistics>
 </div>
