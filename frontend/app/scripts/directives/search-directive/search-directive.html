@@ -1,14 +1,10 @@
-<div class="search-directive form-inline">
-    <div class="form-group">
-        <label>Search: </label>
-        <input type="text"
+<div class="search-directive">
+    <div class="input-group">
+        <label class="input-group-addon">Search: </label>
+        <input type="search"
                class="form-control"
-               placeholder="Start typing..."
-               ng-model="selected"
-               typeahead-min-length="2"
-               typeahead-wait-ms="400"
-               typeahead-on-select="propertySelected($item)"
-               typeahead="property as (property.address.street + ', ' + property.address.district + ' [' + property.area + ' m2, ' + property.price + ' CZK]') for property in data | filter:$viewValue | limitTo:8 " />
+               placeholder="Type something..."
+               ng-model="query">
     </div>
 </div>
 
