@@ -3,5 +3,20 @@
 </div>
 
 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-    <ui-gmap-markers models='markers' coords='"coords"'></ui-gmap-markers>
+
+    <ui-gmap-markers models='markers' coords='"coords"'>
+        <ui-gmap-windows show="show">
+            <div>
+                   <span>
+                    <!-- Tooltip to do...
+                    District: {{marker.selected.address.district}} <br/>
+                    Street: {{marker.selected.address.street}} <br/>
+                    Area: {{marker.selected.area}} m&#178;<br/>
+                    Price: {{marker.selected.price}} czk <br/>
+                     -->
+                   </span>
+            </div>
+        </ui-gmap-windows>
+    </ui-gmap-markers>
+
 </ui-gmap-google-map>
