@@ -4,7 +4,13 @@ angular.module('propertyBrokerApp.controllers').
     controller('MainCtrl', ['$scope', 'growl', 'uiGmapGoogleMapApi', 'PropertyService',
         function ($scope, growl, uiGmapGoogleMapApi, PropertyService) {
 
+            $scope.marker = {};
+            $scope.marker.id = 0;
             $scope.markers = [];
+
+            $scope.$on('marker-updated', function(msg, value) {
+                $scope.marker = value;
+            });
 
             uiGmapGoogleMapApi.then(function() {
                 $scope.map = { center: { latitude: 49.2044255, longitude: 16.6325489 }, zoom: 12 };

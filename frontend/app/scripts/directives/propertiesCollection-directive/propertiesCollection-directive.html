@@ -1,16 +1,15 @@
-<div >
+<div>
     <search data="properties" query="query"></search>
 
     <div ng-repeat="property in filteredProperties">
         <!-- TODO: design -->
-     <a ng-click="propertySelected(property)">
-        <span>Property</span>
-        <span>Address: {{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</span>
-        <span>Type: {{ property.type }}</span>
-        <span>Area: {{ property.area }}</span>
-        <span>Price: {{ property.price }}</span>
-     </a>
-
+        <a ng-click="propertySelected(property)">
+            <span>Property</span>
+            <span>Address: {{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</span>
+            <span>Type: {{ property.type }}</span>
+            <span>Area: {{ property.area }}</span>
+            <span>Price: {{ property.price }}</span>
+        </a>
     </div>
     <pagination total-items="totalItems"
                 items-per-page="itemsPerPage"

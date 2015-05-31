@@ -35,20 +35,19 @@ angular.module('propertyBrokerApp.directives')
                     $scope.filteredProperties = $scope.filteredData.slice(begin, end);
                 };
 
-
                 $scope.propertySelected  = function(selected){
-                    console.log(selected);
                     $scope.marker = {
-                        id: 0,
-                        show:true,
-                        coords: {latitude: selected.coords.x, longitude: selected.coords.y },
-                        options:{
-                            icon:{url:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+                        selected: selected,
+                        coords: {
+                            latitude: selected.coords.x,
+                            longitude: selected.coords.y
                         },
-                        selected:selected
+                        options: {
+                            icon:{url:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+                        }
                     };
+                    $scope.$emit('marker-updated', $scope.marker);
                 };
-
 
             }]
         };
