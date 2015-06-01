@@ -1,5 +1,7 @@
 package cz.fi.muni.pb138.broker.data.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * @author Martin
  */
@@ -24,6 +26,7 @@ public enum Type {
         this.text = text;
     }
 
+    @JsonValue
     public String getText() {
         return text;
     }
