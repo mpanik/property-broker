@@ -34,6 +34,7 @@ angular.module('propertyBrokerApp.directives')
                     var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
                     var end = begin + $scope.itemsPerPage;
                     $scope.filteredProperties = $scope.filteredData.slice(begin, end);
+                    var markers = [];
                     for(var index = 0; index < $scope.filteredProperties.length; index++) {
                         var marker = {
                             id: index,
@@ -42,8 +43,9 @@ angular.module('propertyBrokerApp.directives')
                                 longitude: $scope.filteredProperties[index].coords.y
                             }
                         };
-                        $scope.$emit('marker-added', marker);
+                        markers.push(marker);
                     }
+                    $scope.$emit('markers-added', markers);
                 };
 
                 $scope.propertySelected  = function(selected){

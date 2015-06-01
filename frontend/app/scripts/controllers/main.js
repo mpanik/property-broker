@@ -12,8 +12,8 @@ angular.module('propertyBrokerApp.controllers').
                 $scope.marker = value;
             });
 
-            $scope.$on('marker-added', function(msg, value) {
-                $scope.markers.push(value);
+            $scope.$on('markers-added', function(msg, value) {
+                $scope.markers = value;
             });
 
             uiGmapGoogleMapApi.then(function() {
