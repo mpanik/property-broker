@@ -19,6 +19,7 @@ angular.module('propertyBrokerApp.directives')
                 $scope.itemsPerPage = 5;
                 $scope.maxSize = 10;
 
+
                 $scope.$watch('query', function (query) {
                     $scope.filteredData = $filter('filter')($scope.data, query);
                     $scope.totalItems = $scope.filteredData.length;
@@ -33,6 +34,16 @@ angular.module('propertyBrokerApp.directives')
                     var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
                     var end = begin + $scope.itemsPerPage;
                     $scope.filteredProperties = $scope.filteredData.slice(begin, end);
+                    for(var index = 0; index < $scope.filteredProperties.length; index++) {
+                        var marker = {
+                            id: index,
+                            coords: {
+                                latitude: $scope.filteredProperties[index].coords.x,
+                                longitude: $scope.filteredProperties[index].coords.y
+                            }
+                        };
+                        $scope.$emit('marker-added', marker);
+                    }
                 };
 
                 $scope.propertySelected  = function(selected){

@@ -12,6 +12,10 @@ angular.module('propertyBrokerApp.controllers').
                 $scope.marker = value;
             });
 
+            $scope.$on('marker-added', function(msg, value) {
+                $scope.markers.push(value);
+            });
+
             uiGmapGoogleMapApi.then(function() {
                 $scope.map = { center: { latitude: 49.2044255, longitude: 16.6325489 }, zoom: 12 };
             });

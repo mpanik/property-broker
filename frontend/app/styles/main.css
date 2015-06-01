@@ -17,6 +17,7 @@ footer {
 
 .angular-google-map-container {
     height: 450px;
+    float: left;
 }
 
 .properties {
