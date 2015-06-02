@@ -10,7 +10,8 @@
     "angular-google-maps": "latest",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest",
-    "angular-growl-v2": "latest"
+    "angular-growl-v2": "latest",
+    "ng-lodash": "~0.2.3"
   },
   "devDependencies": {
     "angular-mocks": "latest"

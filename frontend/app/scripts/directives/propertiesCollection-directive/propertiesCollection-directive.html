@@ -1,16 +1,17 @@
 <div>
-    <search data="properties" query="query"></search>
-
-    <div class="container" id = "properties">
+    <div>
         <h2>Properties</h2>
+        <search data="properties" query="query"></search>
         <div class="list-group">
             <a href="#" class="list-group-item" ng-repeat="property in filteredProperties" ng-click="propertySelected(property)">
-                <h4 class="list-group-item-heading">Property: {{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</h4>
-                <p class="list-group-item-text">Type: {{ property.type }}, Area: {{ property.area }}, Price: {{ property.price }}</p>
+                <h4 class="list-group-item-heading">{{ property.address.street }}, {{ property.address.district }}, {{ property.address.city }}</h4>
+                <div class="list-group-item-text">
+                    <span>{{ property.area }} m<sup>2</sup>, {{ property.price }} Kč</span>
+                    <span class="pull-right">{{ property.type }}</span>
+                </div>
             </a>
         </div>
     </div>
-
     <pagination total-items="totalItems"
                 items-per-page="itemsPerPage"
                 max-size= "maxSize"

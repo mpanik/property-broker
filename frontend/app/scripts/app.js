@@ -4,6 +4,7 @@ angular.module('propertyBrokerApp', [
     'ngAnimate',
     'ui.bootstrap',
     'angular-growl',
+    'ngLodash',
     'propertyBrokerApp.routes',
     'propertyBrokerApp.services',
     'propertyBrokerApp.controllers',
