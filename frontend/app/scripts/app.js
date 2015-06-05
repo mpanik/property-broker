@@ -5,6 +5,7 @@ angular.module('propertyBrokerApp', [
     'ui.bootstrap',
     'angular-growl',
     'ngLodash',
+    'angularSpinner',
     'propertyBrokerApp.routes',
     'propertyBrokerApp.services',
     'propertyBrokerApp.controllers',

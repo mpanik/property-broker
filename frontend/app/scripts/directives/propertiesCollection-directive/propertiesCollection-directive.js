@@ -17,7 +17,7 @@ angular.module('propertyBrokerApp.directives')
                 $scope.filteredProperties = [];
                 $scope.currentPage = 1;
                 $scope.itemsPerPage = 5;
-                $scope.maxSize = 10;
+                $scope.maxSize = 7;
 
                 $scope.$watch('query', function (query) {
                     $scope.filteredData = $filter('filter')($scope.data, query);
@@ -59,7 +59,8 @@ angular.module('propertyBrokerApp.directives')
                 $scope.propertySelected  = function(selected){
                     var marker = makeMarker(selected);
                     marker.options = {
-                        icon:{url:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+                        icon: {url:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"},
+                        animation: '1'
                     };
                     $scope.$emit('marker-updated', marker);
                 };

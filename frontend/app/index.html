@@ -18,6 +18,7 @@
   </head>
   <body ng-app="propertyBrokerApp">
     <div growl></div>
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="false"></span>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -48,6 +49,8 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
     <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -55,6 +58,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/routes/routes.js"></script>
     <script src="scripts/services/property-service.js"></script>
+    <script src="scripts/services/property-resource.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/stats.js"></script>
     <script src="scripts/directives/navbar-directive/navbar-directive.js"></script>

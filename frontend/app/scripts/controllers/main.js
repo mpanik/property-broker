@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('propertyBrokerApp.controllers').
-    controller('MainCtrl', ['$scope', 'growl', 'uiGmapGoogleMapApi', 'PropertyService',
-        function ($scope, growl, uiGmapGoogleMapApi, PropertyService) {
+    controller('MainCtrl', ['$scope', 'uiGmapGoogleMapApi', 'PropertyService',
+        function ($scope, uiGmapGoogleMapApi, PropertyService) {
 
-            $scope.marker = { coords:{latitude:0,longitude:0} } ;
+            $scope.marker = {};
             $scope.marker.id = 0;
             $scope.markers = [];
 
@@ -23,9 +23,6 @@ angular.module('propertyBrokerApp.controllers').
             PropertyService.findAll(
                 function(data) {
                     $scope.properties = data;
-                },
-                function() {
-                    growl.error('Failed to connect to server. Please try again later.');
                 }
             );
 
