@@ -1,79 +1,50 @@
-<div class="avgPrice-directive">
-    <table class="table table-bordered">
-        <tr class="days">
+<div class="statistics-directive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
             <th>District</th>
-            <th>Avg Price [czk/m2]</th>
-            <th>Count</th>
-            <!-- pocect nehnutelnosti na predaj v districte-->
+            <th>Avg. Price [Kč/m<sup>2</sup>]</th>
+            <th># Properties</th>
             <th>Avg Price</th>
-            <th>Most Expensive Property in District</th>
-            <th>Cheapest Property in District</th>
+            <th>Most Expensive Property</th>
+            <th>Cheapest Property</th>
         </tr>
-        <tr ng-repeat="districtValue in districtsStats | orderBy:'-AvgPriceMSquare'">
-            <td>
-                {{districtValue.district}}
-            </td>
-            <td>
-                {{districtValue.avgPriceMSquare}}
-            </td>
-            <td>
-                {{districtValue.count}}
-            </td>
-            <td>
-                {{districtValue.avgPrice}}
-            </td>
-            <td>
-                {{districtValue.mostExpensive.address.street}}, [{{districtValue.mostExpensive.area}} m2
-                ,{{districtValue.mostExpensive.price}} czk]
-            </td>
-            <td>
-                {{districtValue.cheapest.address.street}}, [{{districtValue.cheapest.area}} m2 ,{{districtValue.cheapest.price}}
-                czk]
+        </thead>
+        <tbody ng-repeat="(districtName, districtData) in districtsStats">
+        <tr ng-click="expandRow(districtName)" title="click to expand">
+            <td>{{districtName === 'null' ? "Not Specified" : districtName}}</td>
+            <td>{{districtData.avgPriceMSquare}}</td>
+            <td>{{districtData.count}}</td>
+            <td>{{districtData.avgPrice}}</td>
+            <td>{{districtData.mostExpensive.address.street || "Not Specified"}}, [{{districtData.mostExpensive.area}} m<sup>2</sup>, {{districtData.mostExpensive.price}} Kč]</td>
+            <td>{{districtData.cheapest.address.street || "Not Specified"}}, [{{districtData.cheapest.area}} m<sup>2</sup>, {{districtData.cheapest.price}} Kč]</td>
+        </tr>
+        <tr ng-show="isExpanded(districtName)" class="sub-table">
+            <td colspan="6">
+                <table class="table table-hover table-condensed table-striped">
+                    <thead>
+                    <tr class="warning">
+                        <th>Street</th>
+                        <th>Avg. Price [Kč/m<sup>2</sup>]</th>
+                        <th># Properties</th>
+                        <th>Avg Price</th>
+                        <th>Most Expensive Property</th>
+                        <th>Cheapest Property</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(streetName, streetData) in districtData.streetsStats">
+                        <td>{{streetName === 'null' ? "Not Specified" : streetName}}</td>
+                        <td>{{streetData.avgPriceMSquare}}</td>
+                        <td>{{streetData.count}}</td>
+                        <td>{{streetData.avgPrice}}</td>
+                        <td>{{streetData.mostExpensive.address.street || "Not Specified"}}, [{{streetData.mostExpensive.area}} m2,{{streetData.mostExpensive.price}} czk]</td>
+                        <td>{{streetData.cheapest.address.street || "Not Specified"}}, [{{streetData.cheapest.area}} m2 ,{{streetData.cheapest.price}}czk]</td>
+                    </tr>
+                    </tbody>
+                </table>
             </td>
         </tr>
+        </tbody>
     </table>
-
-
-    <br/>
-    <br/>
-    <br/>
-
-    <h1>Avg Prices in Streets by Districts</h1>
-    <span ng-repeat="districtValues in streetStats ">
-        <h2> {{districtValues.district}}</h2>
-        <table class="table table-bordered">
-            <tr class="days">
-                <th>Street Name</th>
-                <th>Avg Price [czk/m2]</th>
-                <th>Count</th>
-                <!-- pocect nehnutelnosti na predaj v ulici-->
-                <th>Avg Price</th>
-                <th>Most Expensive Property on Street</th>
-                <th>Cheapest Property on Street</th>
-            </tr>
-            <tr ng-repeat="districtValue in districtValues.streets  | orderBy:'-AvgPriceMSquare' ">
-                <td>
-                    {{districtValue.street}}
-                </td>
-                <td>
-                    {{districtValue.avgPriceMSquare}}
-                </td>
-                <td>
-                    {{districtValue.count}}
-                </td>
-                <td>
-                    {{districtValue.avgPrice}}
-                </td>
-                <td>
-                    {{districtValue.mostExpensive.address.street}}, [{{districtValue.mostExpensive.area}} m2
-                    ,{{districtValue.mostExpensive.price}} czk]
-                </td>
-                <td>
-                    {{districtValue.cheapest.address.street}}, [{{districtValue.cheapest.area}} m2 ,{{districtValue.cheapest.price}}
-                    czk]
-                </td>
-            </tr>
-        </table>
-    </span>
-
 </div>
