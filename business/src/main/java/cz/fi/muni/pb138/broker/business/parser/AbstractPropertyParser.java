@@ -3,11 +3,12 @@ package cz.fi.muni.pb138.broker.business.parser;
 import cz.fi.muni.pb138.broker.data.enums.Type;
 import cz.fi.muni.pb138.broker.data.model.Address;
 import cz.fi.muni.pb138.broker.data.model.Property;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,22 +20,20 @@ public abstract class AbstractPropertyParser implements PropertyParser {
     protected final String SREALITY = "SReality";
     protected final String BRNENSKE_REALITY = "BrnenskeReality";
 
-    public abstract List<Property> parse() throws Exception;
+    public abstract Set<Property> parse() throws Exception;
 
     protected Property parseAndBuild(String type, String area, String district, String street, String price, String realityServer) {
 
         BigDecimal numPrice;
         try {
             numPrice = parsePrice(price);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("Unable to build a property object, not enough data");
         }
 
         try {
             type = parseType(type);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             type = null;
         }
 
@@ -43,8 +42,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         Integer numArea;
         try {
             numArea = parseArea(area);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("Unable to build a property object, not enough data");
         }
 
@@ -95,8 +93,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         Pattern pattern = Pattern.compile("\\d+.m");
         try {
             area = parseRegex(areaData, pattern);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("No area value in the data provided");
         }
         //extracting just the numeric value from the matched data
@@ -113,8 +110,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         Pattern pattern = Pattern.compile("\\d+[+]\\d+|\\d+[+]kk");
         try {
             type = parseRegex(typeData, pattern);
-        }
-        catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("No estate type in data");
         }
 
@@ -130,11 +126,10 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         Pattern pattern = Pattern.compile("\\d+");
         try {
             price = parseRegex(price, pattern);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("Argument not a number");
         }
-        if(Integer.parseInt(price) == 1) {
+        if (Integer.parseInt(price) == 1) {
             throw new IllegalArgumentException("Argument not a number");
         }
         BigDecimal numPrice = new BigDecimal(price);
@@ -158,32 +153,28 @@ public abstract class AbstractPropertyParser implements PropertyParser {
 
         String city = "Brno";
         Pattern pattern;
-        if(realityServer.equals(BRNENSKE_REALITY)) {
+        if (realityServer.equals(BRNENSKE_REALITY)) {
             pattern = Pattern.compile("(?<=ul[.].)\\w+", Pattern.UNICODE_CHARACTER_CLASS);
-        }
-        else {
+        } else {
             pattern = Pattern.compile("\\w+\\s*\\w*(?=,.+)", Pattern.UNICODE_CHARACTER_CLASS);
         }
         String street;
         try {
             street = parseRegex(estateData, pattern);
-        }
-        catch(IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             street = null;
         }
 
-        if(realityServer.equals(BRNENSKE_REALITY)) {
+        if (realityServer.equals(BRNENSKE_REALITY)) {
             pattern = Pattern.compile("(?<=Brno, Brno - )\\w+\\s*\\w*|(?<=Brno, BRNO-)\\w+\\s*\\w*", Pattern.UNICODE_CHARACTER_CLASS);
-        }
-        else {
+        } else {
             pattern = Pattern.compile("(?<=Brno - )(?!Brno)\\w+\\s*\\w*|(?<=Brno - Brno-)\\w+", Pattern.UNICODE_CHARACTER_CLASS);
         }
         String district;
         try {
             district = parseRegex(districtData, pattern);
             district = district.substring(0, 1).toUpperCase() + district.substring(1, district.length()).toLowerCase();
-        }
-        catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             district = "Brno-město";
         }
 

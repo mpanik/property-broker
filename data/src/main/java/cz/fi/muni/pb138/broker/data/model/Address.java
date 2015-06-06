@@ -84,14 +84,17 @@ public class Address {
 
         Address address = (Address) o;
 
-        return street.equals(address.street) && district.equals(address.district) && city.equals(address.city);
+        if (street != null ? !street.equals(address.street) : address.street != null) return false;
+        if (district != null ? !district.equals(address.district) : address.district != null) return false;
+        return !(city != null ? !city.equals(address.city) : address.city != null);
+
     }
 
     @Override
     public int hashCode() {
-        int result = street.hashCode();
-        result = 31 * result + district.hashCode();
-        result = 31 * result + city.hashCode();
+        int result = street != null ? street.hashCode() : 0;
+        result = 31 * result + (district != null ? district.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
         return result;
     }
 

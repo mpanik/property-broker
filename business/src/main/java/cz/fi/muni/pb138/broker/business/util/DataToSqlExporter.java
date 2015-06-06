@@ -1,26 +1,26 @@
 package cz.fi.muni.pb138.broker.business.util;
 
 import cz.fi.muni.pb138.broker.data.model.Property;
+
 import java.io.*;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Viki
  */
 public class DataToSqlExporter {
 
-    public void importData(List<Property> propertyList) throws Exception {
+    public void importData(Set<Property> propertyList) throws Exception {
 
         addCoordinatesToProperties(propertyList);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("data/src/main/resources/META-INF/sql/sql-insert.sql"), "utf-8"))) {
-            for(Property property : propertyList) {
+            for (Property property : propertyList) {
                 String insertStatement = prepareInsert(property);
                 writer.write(insertStatement);
                 writer.write("\n");
             }
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             throw new IOException("Unable to write to file" + ex);
         }
     }
@@ -31,10 +31,9 @@ public class DataToSqlExporter {
         String price = property.getPrice().toString();
 
         String street = property.getAddress().getStreet();
-        if(street == null) {
+        if (street == null) {
             street = "null";
-        }
-        else {
+        } else {
             street = "'" + street + "'";
         }
 
@@ -42,10 +41,9 @@ public class DataToSqlExporter {
         String city = "'" + property.getAddress().getCity() + "'";
 
         String type;
-        if(property.getType() == null) {
+        if (property.getType() == null) {
             type = "null";
-        }
-        else {
+        } else {
             type = "'" + property.getType().getText() + "'";
         }
 
@@ -54,14 +52,14 @@ public class DataToSqlExporter {
 
 
         String insertStatement = "INSERT INTO Property (area, price, street, district, city, type, x, y) VALUES (" + area
-                + ", " + price + ", "  + street
+                + ", " + price + ", " + street
                 + ", " + district + ", " + city + ", "
                 + type + ", " + streetXCoord + ", " + streetYCoord + ");";
 
         return insertStatement;
     }
 
-    private void addCoordinatesToProperties(List<Property> properties) {
+    private void addCoordinatesToProperties(Set<Property> properties) {
         CoordsEnquirer enquirer = new CoordsEnquirer();
         enquirer.addCoords(properties);
     }

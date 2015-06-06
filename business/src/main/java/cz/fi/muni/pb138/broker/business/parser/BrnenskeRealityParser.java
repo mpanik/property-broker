@@ -5,9 +5,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Viki
@@ -18,22 +19,22 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
     final private int ADS_PER_PAGE = 15;
 
     @Override
-    public List<Property> parse() throws Exception {
+    public Set<Property> parse() throws Exception {
         return extractFromBrnenskeReality();
     }
 
-    public List<Property> extractFromBrnenskeReality() throws Exception {
+    public Set<Property> extractFromBrnenskeReality() throws Exception {
 
-        List<Property> properties = new ArrayList<>();
+        Set<Property> properties = new HashSet<>();
 
         String url = "http://www.brnenske-reality.cz/byty-prodej/brno-okres";
         Integer pageCounter = ADS_PER_PAGE + 1;
 
         Elements onePageAds = extractDataFromPage(url);
-        while(onePageAds.size() > 0) {
+        while (onePageAds.size() > 0) {
             //extracting advertisements one by one for parsing
-            for(Element ad : onePageAds) {
-                Element estateDataElements= ad.select("p:has(span)").first();
+            for (Element ad : onePageAds) {
+                Element estateDataElements = ad.select("p:has(span)").first();
                 Elements estateData = estateDataElements.select("span");
                 //first span contains type of estate
                 String type = estateData.get(0).text();
@@ -48,8 +49,7 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
                 try {
                     Property property = parseAndBuild(type, area, district, description, price, BRNENSKE_REALITY);
                     properties.add(property);
-                }
-                catch(IllegalArgumentException ex) {
+                } catch (IllegalArgumentException ex) {
                     continue;
                 }
             }
@@ -69,4 +69,8 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
         return resultSet;
     }
 
+    @Override
+    public String toString() {
+        return "BrnenskeRealityParser";
+    }
 }

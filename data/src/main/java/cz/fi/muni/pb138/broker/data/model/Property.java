@@ -38,7 +38,7 @@ public class Property extends BaseModel implements Serializable {
     private Type type;
 
     @Embedded
-    @Column
+    @Column(nullable = false)
     private Point2D.Double coords;
 
     protected Property() {
@@ -144,7 +144,7 @@ public class Property extends BaseModel implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Property)) return false;
 
         Property property = (Property) o;
 

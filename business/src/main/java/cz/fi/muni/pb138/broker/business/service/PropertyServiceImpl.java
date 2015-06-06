@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Martin
@@ -24,8 +25,18 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public void save(Set<Property> properties) {
+        propertyRepo.save(properties);
+    }
+
+    @Override
     public void delete(Long id) {
         propertyRepo.delete(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        propertyRepo.deleteAll();
     }
 
     @Override
@@ -42,7 +53,7 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public List<Property> findAll() {
-        return  propertyRepo.findAll();
+        return propertyRepo.findAll();
     }
 
     @Override

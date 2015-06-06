@@ -3,9 +3,10 @@ package cz.fi.muni.pb138.broker.business.parser;
 import cz.fi.muni.pb138.broker.data.model.Property;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Viki
@@ -14,13 +15,13 @@ import java.util.List;
 public class SRealityParser extends AbstractPropertyParser {
 
     @Override
-    public List<Property> parse() throws Exception {
+    public Set<Property> parse() throws Exception {
         return extractFromSReality();
     }
 
-    private List<Property> extractFromSReality() throws Exception {
+    private Set<Property> extractFromSReality() throws Exception {
 
-        List<Property> properties = new ArrayList<>();
+        Set<Property> properties = new HashSet<>();
 
         String url = "http://www.sreality.cz/api/cs/v1/estates/count?category_main_cb=1&category_type_cb=1&locality_country_id=112&region=okres+Brno-m%C4%9Bsto&region_entity_id=72&region_entity_type=district";
 
@@ -44,8 +45,7 @@ public class SRealityParser extends AbstractPropertyParser {
                 try {
                     Property property = parseAndBuild(typeAndArea, typeAndArea, locality, locality, price, SREALITY);
                     properties.add(property);
-                }
-                catch(IllegalArgumentException ex) {
+                } catch (IllegalArgumentException ex) {
                     continue;
                 }
             }
@@ -61,4 +61,8 @@ public class SRealityParser extends AbstractPropertyParser {
         return jsonObjectData;
     }
 
+    @Override
+    public String toString() {
+        return "SRealityParser";
+    }
 }

@@ -1,7 +1,9 @@
 package cz.fi.muni.pb138.broker.business.service;
 
 import cz.fi.muni.pb138.broker.data.model.Property;
+
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author by Martin
@@ -16,11 +18,23 @@ public interface PropertyService {
     void save(Property property);
 
     /**
+     * Insert list of properties.
+     *
+     * @param properties list of properties to be inserted
+     */
+    void save(Set<Property> properties);
+
+    /**
      * Delete property by given id.
      *
      * @param id identification of property to be deleted
      */
     void delete(Long id);
+
+    /**
+     * Delete all managed entities
+     */
+    void deleteAll();
 
     /**
      * Update given property.

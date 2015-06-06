@@ -3,20 +3,19 @@ package cz.fi.muni.pb138.broker.business.util;
 import cz.fi.muni.pb138.broker.data.model.Property;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Viki
  */
 public class CoordsEnquirer {
 
-    private enum Type {STREET, DISTRICT}
-
-    public List<Property> addCoords(List<Property> properties) {
+    public Set<Property> addCoords(Set<Property> properties) {
 
         for (Property property : properties) {
             String streetForUrl = property.getAddress().getStreet();
@@ -65,7 +64,7 @@ public class CoordsEnquirer {
         return streetLocation;
     }
 
-    private void fillBlanks(List<Property> properties, Type type) {
+    private void fillBlanks(Set<Property> properties, Type type) {
 
         for (Property property : properties) {
             if (property.getCoords() != null && property.getCoords().getX() == 0.0 && property.getCoords().getY() == 0.0) {
@@ -94,7 +93,6 @@ public class CoordsEnquirer {
         }
     }
 
-
     protected String readUrl(String urlString, String encoding) throws Exception {
         BufferedReader reader = null;
         try {
@@ -112,5 +110,8 @@ public class CoordsEnquirer {
                 reader.close();
         }
     }
+
+
+    private enum Type {STREET, DISTRICT}
 
 }
