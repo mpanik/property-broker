@@ -6,10 +6,16 @@ import java.io.*;
 import java.util.Set;
 
 /**
+ * Class contains methods to create file, which contains sql insert statement of each property
  * @author Viki
  */
 public class DataToSqlExporter {
 
+    /**
+     * Export properties into file, which contains sql insert statement of each property
+     * @param propertyList
+     * @throws Exception could not save property data into file
+     */
     public void importData(Set<Property> propertyList) throws Exception {
 
         addCoordinatesToProperties(propertyList);
@@ -25,6 +31,11 @@ public class DataToSqlExporter {
         }
     }
 
+    /**
+     * Create sql inset statement of property
+     * @param property property
+     * @return string sql insert statement of property
+     */
     private String prepareInsert(Property property) {
 
         String area = property.getArea().toString();
@@ -59,6 +70,10 @@ public class DataToSqlExporter {
         return insertStatement;
     }
 
+    /**
+     * Add coords to properties
+     * @param properties set of properteis
+     */
     private void addCoordinatesToProperties(Set<Property> properties) {
         CoordsEnquirer enquirer = new CoordsEnquirer();
         enquirer.addCoords(properties);

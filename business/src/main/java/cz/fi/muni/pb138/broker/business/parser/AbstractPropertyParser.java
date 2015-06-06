@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * This class contains methods to extract and parse properties data from reality web server
  * @author Viki
  */
 public abstract class AbstractPropertyParser implements PropertyParser {

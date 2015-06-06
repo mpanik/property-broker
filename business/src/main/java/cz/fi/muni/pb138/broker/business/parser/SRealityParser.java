@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Contains methods to parse and extract properties data form server sreality.cz
  * @author Viki
  */
 @Named

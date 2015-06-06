@@ -11,10 +11,17 @@ import java.net.URL;
 import java.util.Set;
 
 /**
+ * This class contains methods for finding and assigning coords to property
  * @author Viki
  */
 public class CoordsEnquirer {
 
+
+    /**
+     * Add coords to properties
+     * @param properties set of properties
+     * @return property with coords
+     */
     public Set<Property> addCoords(Set<Property> properties) {
 
         for (Property property : properties) {
@@ -43,6 +50,11 @@ public class CoordsEnquirer {
         return properties;
     }
 
+    /**
+     * Get coords of property by url
+     * @param url  maps.googleapis url with address parameter
+     * @return coord of property
+     */
     private Point2D.Double getCoords(String url) {
 
         Point2D.Double streetLocation;
@@ -63,6 +75,7 @@ public class CoordsEnquirer {
 
         return streetLocation;
     }
+
 
     private void fillBlanks(Set<Property> properties, Type type) {
 
@@ -93,6 +106,13 @@ public class CoordsEnquirer {
         }
     }
 
+    /**
+     * Read data from url
+     * @param urlString server url
+     * @param encoding type of encoding
+     * @return string data
+     * @throws Exception exception
+     */
     protected String readUrl(String urlString, String encoding) throws Exception {
         BufferedReader reader = null;
         try {
@@ -110,7 +130,6 @@ public class CoordsEnquirer {
                 reader.close();
         }
     }
-
 
     private enum Type {STREET, DISTRICT}
 

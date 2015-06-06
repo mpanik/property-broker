@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Contains methods to parse and extract properties data form server brnenske-reality.cz
  * @author Viki
  */
 @Named
