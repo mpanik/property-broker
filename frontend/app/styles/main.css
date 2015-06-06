@@ -36,6 +36,14 @@ footer {
     color: red !important;
 }
 
+.table tr {
+    cursor: pointer
+}
+
+.table table tr {
+    cursor: default;
+}
+
 .sub-table {
     font-size: small;
     background: #FCF8E3;
