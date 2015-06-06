@@ -7,7 +7,9 @@ angular.module('propertyBrokerApp.controllers').
             PropertyService.findAll(
                 function (data) {
                     $scope.properties = data;
-                    $scope.districtsStats = calculateDistrictsStats($scope.properties);
+                    if (data.length > 0) {
+                        $scope.districtsStats = calculateDistrictsStats($scope.properties);
+                    }
                 }
             );
 

@@ -1,5 +1,5 @@
-<div class="wrapper">
-    <div class="properties pull-left" ng-if="properties !== undefined">
+<div class="wrapper" ng-if="properties && properties.length !== undefined" ng-cloak>
+    <div class="properties pull-left">
         <properties-collection data='properties'></properties-collection>
     </div>
 
