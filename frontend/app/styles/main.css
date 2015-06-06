@@ -5,6 +5,12 @@
     padding: 0.2em 0;
 }
 
+.navbar {
+    border-radius: 0;
+    padding: 8px;
+    background: whitesmoke !important;
+}
+
 body {
     padding-top: 15px;
     padding-bottom: 15px;
