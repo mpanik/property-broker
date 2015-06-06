@@ -22,6 +22,17 @@ public abstract class AbstractPropertyParser implements PropertyParser {
 
     public abstract Set<Property> parse() throws Exception;
 
+
+    /**
+     * Parse inserted data and insert them into property object
+     * @param type property type
+     * @param area property area
+     * @param district district where is property located
+     * @param street street where is property located
+     * @param price property price
+     * @param realityServer name of reality server
+     * @return property object filled with data
+     */
     protected Property parseAndBuild(String type, String area, String district, String street, String price, String realityServer) {
 
         BigDecimal numPrice;
@@ -51,6 +62,13 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return property;
     }
 
+    /**
+     * Read data from url and save them into string
+     * @param urlString property server url
+     * @param encoding type of encoding
+     * @return data from url
+     * @throws Exception cannot read data from url
+     */
     protected String readUrl(String urlString, String encoding) throws Exception {
         BufferedReader reader = null;
         try {
@@ -69,6 +87,14 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         }
     }
 
+    /**
+     * Create new property object filled with data
+     * @param type property type
+     * @param area property area
+     * @param price property price
+     * @param address property adddress
+     * @return property filled data
+     */
     protected Property buildProperty(String type, Integer area, BigDecimal price, Address address) {
         return new Property.Builder()
                 .type(Type.fromString(type))
@@ -78,6 +104,13 @@ public abstract class AbstractPropertyParser implements PropertyParser {
                 .build();
     }
 
+    /**
+     * Create new address object filled with data
+     * @param street street where is property located
+     * @param district district where is property located
+     * @param city city where is property located
+     * @return address filled with data
+     */
     protected Address buildAddress(String street, String district, String city) {
         return new Address.Builder()
                 .city(city)
@@ -86,6 +119,11 @@ public abstract class AbstractPropertyParser implements PropertyParser {
                 .build();
     }
 
+    /**
+     * Parse property area into integer
+     * @param areaData property area
+     * @return property area
+     */
     protected Integer parseArea(String areaData) {
 
         String area;
@@ -103,6 +141,11 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return Integer.parseInt(area);
     }
 
+    /**
+     * Parse property type into specific format
+     * @param typeData property type
+     * @return formatted property type
+     */
     protected String parseType(String typeData) {
 
         String type;
@@ -117,6 +160,11 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return type;
     }
 
+    /**
+     * Parse property type into bigDecimal
+     * @param priceData property price
+     * @return property price
+     */
     protected BigDecimal parsePrice(String priceData) {
 
         //replacing blanks in the string representing price
@@ -137,6 +185,12 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return numPrice;
     }
 
+    /**
+     * Parse string by regular expression pattern
+     * @param string string data
+     * @param pattern expression patten
+     * @return parsed string
+     */
     private String parseRegex(String string, Pattern pattern) {
 
         Matcher matcher = pattern.matcher(string);
@@ -149,6 +203,13 @@ public abstract class AbstractPropertyParser implements PropertyParser {
         return string;
     }
 
+    /**
+     * Parse address of property
+     * @param estateData estate of property
+     * @param districtData district where is property located
+     * @param realityServer name of reality server
+     * @return property address
+     */
     private Address parseAddress(String estateData, String districtData, String realityServer) {
 
         String city = "Brno";

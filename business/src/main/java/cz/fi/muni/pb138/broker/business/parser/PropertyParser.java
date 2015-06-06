@@ -7,6 +7,11 @@ import java.util.Set;
 /**
  * @author Milan
  */
+
+
+/**
+ * Parse property data
+ */
 public interface PropertyParser {
     Set<Property> parse() throws Exception;
 }

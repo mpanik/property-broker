@@ -23,6 +23,11 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
         return extractFromBrnenskeReality();
     }
 
+    /**
+     * Build set of property by extracting data from server brnenske-reality.cz
+     * @return set of properties
+     * @throws Exception exception
+     */
     public Set<Property> extractFromBrnenskeReality() throws Exception {
 
         Set<Property> properties = new HashSet<>();
@@ -60,6 +65,12 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
         return properties;
     }
 
+    /**
+     * Extract data from article elements
+     * @param url server url
+     * @return article elements
+     * @throws Exception exception
+     */
     private Elements extractDataFromPage(String url) throws Exception {
 
         String data = readUrl(url, "iso-8859-2");

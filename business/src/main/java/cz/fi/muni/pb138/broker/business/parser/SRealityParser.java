@@ -19,6 +19,11 @@ public class SRealityParser extends AbstractPropertyParser {
         return extractFromSReality();
     }
 
+    /**
+     * Build set of property by extracting data from server sreality.cz
+     * @return set of properties
+     * @throws Exception exception
+     */
     private Set<Property> extractFromSReality() throws Exception {
 
         Set<Property> properties = new HashSet<>();
@@ -53,6 +58,12 @@ public class SRealityParser extends AbstractPropertyParser {
         return properties;
     }
 
+    /**
+     * Extract data from url into json object
+     * @param url server url
+     * @return extracted data
+     * @throws Exception
+     */
     private JSONObject extractDataFromUrl(String url) throws Exception {
 
         String data = readUrl(url, "utf-8");
