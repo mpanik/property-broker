@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>Property-broker</title>
+        <author>
+            <firstname>Viktoriia</firstname>
+
+            <surname>Bakalova</surname>
+
+            <affiliation>
+                <orgname>fi.muni.cz</orgname>
+            </affiliation>
+        </author>
+
+        <pubdate>8.6.2015</pubdate>
+    </articleinfo>
+
+    <section>
+        <title>Záverečná zpráva</title>
+        <para>Mojí úlohou na projektu bylo stáhnout data o bytech ze dvou realitních serverů, rozparsovat je, doplnit o zeměpisné souřadnice a předpřipavit data k uložení do databáze</para>
+    </section>
+    
+    <section>
+        <title>sreality.cz</title>
+        <para>Z serveru sreality.cz jsem stáhla soubor s daty ve formátu JSON, který jsem následně rozparsovala pomocí knihovny org.json.</para>
+    </section>
+
+    <section>
+        <title>brnenske-reality.cz</title>
+        <para>V případě serveru brneske-reality.cz jsem stáhla data ve formátu HTML, které jsem rozparsovala pomocí knihovny jsoup.</para>
+    </section>
+
+    <section>
+        <title>Geografické souřadnice</title>
+        <para>Souřadnice jednotlivých bytů jsem dostala pomocí veřejného API Googlu.</para>
+    </section>
+</article>
