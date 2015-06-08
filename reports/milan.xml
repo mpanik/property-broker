@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>Property-broker</title>
+        <author>
+            <firstname>Milan</firstname>
+            <surname>Panik</surname>
+
+            <affiliation>
+                <orgname>fi.muni.cz</orgname>
+            </affiliation>
+        </author>
+
+        <pubdate>8.6.2015</pubdate>
+    </articleinfo>
+
+    <section>
+        <title>Final Report</title>
+        <para>My task was simple: mentoring people, refactoring and designing the app</para>
+    </section>
+</article>
