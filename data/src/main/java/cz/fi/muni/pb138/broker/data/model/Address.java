@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
+ * This class represent model of property address
  * @author Milan
  * @author Martin
  */
@@ -19,7 +20,6 @@ public class Address {
     private String city;
 
     protected  Address() {
-
     }
 
     private Address(Builder builder) {
@@ -53,26 +53,44 @@ public class Address {
         }
     }
 
+    /**
+     * @return street of property
+     */
     public String getStreet() {
         return street;
     }
 
+    /**
+     * @param street street of property
+     */
     public void setStreet(String street) {
         this.street = street;
     }
 
+    /**
+     * @return district of property
+     */
     public String getDistrict() {
         return district;
     }
 
+    /**
+     * @param district district of property
+     */
     public void setDistrict(String district) {
         this.district = district;
     }
 
+    /**
+     * @return city where is property located
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * @param city city where is property located
+     */
     public void setCity(String city) {
         this.city = city;
     }

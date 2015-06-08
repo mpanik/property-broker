@@ -8,6 +8,13 @@ import java.util.List;
 /**
  * @author Milan
  */
+
 public interface PropertyRepository extends JpaRepository<Property, Long> {
+
+    /**
+     * Find properties which are located on the address
+     * @param text property address
+     * @return properties found on address
+     */
     List<Property> findByAddressDistrictContainingIgnoreCase(String text);
 }

@@ -27,7 +27,7 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
     /**
      * Build set of property by extracting data from server brnenske-reality.cz
      * @return set of properties
-     * @throws Exception exception
+     * @throws Exception if property cannot be added to set
      */
     public Set<Property> extractFromBrnenskeReality() throws Exception {
 
@@ -70,7 +70,7 @@ public class BrnenskeRealityParser extends AbstractPropertyParser {
      * Extract data from article elements
      * @param url server url
      * @return article elements
-     * @throws Exception exception
+     * @throws Exception if data cannot be parsed
      */
     private Elements extractDataFromPage(String url) throws Exception {
 

@@ -23,7 +23,7 @@ public class SRealityParser extends AbstractPropertyParser {
     /**
      * Build set of property by extracting data from server sreality.cz
      * @return set of properties
-     * @throws Exception exception
+     * @throws Exception if property cannot be added to set
      */
     private Set<Property> extractFromSReality() throws Exception {
 
@@ -63,7 +63,7 @@ public class SRealityParser extends AbstractPropertyParser {
      * Extract data from url into json object
      * @param url server url
      * @return extracted data
-     * @throws Exception
+     * @throws Exception if data cannot be parsed
      */
     private JSONObject extractDataFromUrl(String url) throws Exception {
 

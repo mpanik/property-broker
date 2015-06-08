@@ -3,6 +3,7 @@ package cz.fi.muni.pb138.broker.data.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
+ * This class represent type of property
  * @author Martin
  */
 public enum Type {
@@ -26,11 +27,20 @@ public enum Type {
         this.text = text;
     }
 
+    /**
+     * Get text assigned to type
+     * @return text
+     */
     @JsonValue
     public String getText() {
         return text;
     }
 
+    /**
+     * This method assign property type by string
+     * @param text property type
+     * @return property type
+     */
     public static Type fromString(String text) {
         if (text == null || text.isEmpty())
             return UNKNOWN_TYPE;

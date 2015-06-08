@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Implementation of property service
  * @author Martin
  */
 @Named

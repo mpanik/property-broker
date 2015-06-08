@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
+ * This class represent property model
  * @author Milan
  * @author Viki
  * @author Martin
@@ -54,6 +55,9 @@ public class Property extends BaseModel implements Serializable {
         this.coords = builder.coords;
     }
 
+    /**
+     * Property class builder
+     */
     public static class Builder {
         private Long id;
         private Integer area;
@@ -97,46 +101,79 @@ public class Property extends BaseModel implements Serializable {
         }
     }
 
+    /**
+     * @return id of property
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * @return area of property
+     */
     public Integer getArea() {
         return area;
     }
 
+    /**
+     * @param area area of property
+     */
     public void setArea(Integer area) {
         this.area = area;
     }
 
+    /**
+     * @return price of property
+     */
     public BigDecimal getPrice() {
         return price;
     }
 
+    /**
+     * @param price price of property
+     */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    /**
+     * @return address of property
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * @param address address of property
+     */
     public void setAddress(Address address) {
         this.address = address;
     }
 
+    /**
+     * @return type of proeprty
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     * @param type type of proeprty
+     */
     public void setType(Type type) {
         this.type = type;
     }
 
+    /**
+     * @return map coords of property
+     */
     public Point2D.Double getCoords() {
         return coords;
     }
 
+    /**
+     * @param coords map coords of property
+     */
     public void setCoords(Point2D.Double coords) {
         this.coords = coords;
     }

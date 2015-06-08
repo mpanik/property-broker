@@ -25,7 +25,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
 
 
     /**
-     * Parse inserted data and insert them into property object
+     * Parse arguments and insert them into property object
      * @param type property type
      * @param area property area
      * @param district district where is property located
@@ -68,7 +68,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
      * @param urlString property server url
      * @param encoding type of encoding
      * @return data from url
-     * @throws Exception cannot read data from url
+     * @throws Exception if reading data from url fail
      */
     protected String readUrl(String urlString, String encoding) throws Exception {
         BufferedReader reader = null;
@@ -89,7 +89,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
     }
 
     /**
-     * Create new property object filled with data
+     * Create new property object filled with arguments
      * @param type property type
      * @param area property area
      * @param price property price
@@ -106,7 +106,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
     }
 
     /**
-     * Create new address object filled with data
+     * Create new address object filled with arguments
      * @param street street where is property located
      * @param district district where is property located
      * @param city city where is property located
@@ -143,7 +143,7 @@ public abstract class AbstractPropertyParser implements PropertyParser {
     }
 
     /**
-     * Parse property type into specific format
+     * Parse property type into format: n'+k' or n'+'m
      * @param typeData property type
      * @return formatted property type
      */

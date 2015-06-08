@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Interface of property service
  * @author by Martin
  */
 public interface PropertyService {
