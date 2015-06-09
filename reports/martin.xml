@@ -17,6 +17,6 @@
 
     <section>
         <title>Final Report</title>
-        <para>Stuff</para>
+        <para>Several minor tasks: builder patterns for models, type property model, integrations tests, implementation of services, statistics calculations.</para>
     </section>
 </article>
